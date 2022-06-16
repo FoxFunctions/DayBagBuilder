@@ -37,6 +37,7 @@ export class LandingComponent implements OnInit {
     });
   }
   ShowParkActivities(): void  {
+    this.activitiesArray = [];
     this.parks.locationString2 = this.locationString2;
     this.parks.ShowParkActivities().subscribe((response) => {
     this.parksArray.push(response);
