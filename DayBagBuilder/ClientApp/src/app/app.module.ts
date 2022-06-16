@@ -11,6 +11,7 @@ import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import {LandingComponent} from './landing/landing.component';
 import { WeatherForecastService } from './weather-forecast.service';
+import { ParksService } from './parks.service';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import { WeatherForecastService } from './weather-forecast.service';
       { path: 'landing', component: LandingComponent},
     ])
   ],
-  providers: [WeatherForecastService],
+  providers: [WeatherForecastService, ParksService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

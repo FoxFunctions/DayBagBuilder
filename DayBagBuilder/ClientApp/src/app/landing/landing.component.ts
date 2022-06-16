@@ -19,16 +19,15 @@ export class LandingComponent implements OnInit {
   locationString2: string = "";
   hikingBagArray: BagItem[] = [];
   parksArray: Parks [] =[];
+  activitiesArray: string[]= [];
   constructor(private weather: WeatherForecastService, private hikingBag: HikingBagService, private parks: ParksService) { 
-    this.ShowHikingBagItems()
-
+  
   }
 
   ShowForecast(): void {
     this.weather.locationString = this.locationString;
     this.weather.GetForecast().subscribe((response) => {
     this.forecastArray.push(response);
-    console.log(this.forecastArray)
     });
   }
 
@@ -40,14 +39,15 @@ export class LandingComponent implements OnInit {
   ShowParkActivities(): void  {
     this.parks.locationString2 = this.locationString2;
     this.parks.ShowParkActivities().subscribe((response) => {
-      this.parksArray.push(response);
-      console.log(this.parksArray)
-      console.log(this.locationString2)
+    this.parksArray.push(response);
+  
+    for (let i = 0; i < this.parksArray[0].data.length; i++){
+
+      this.activitiesArray.push(this.parksArray[0].data[i].name);
+    } 
+    this.parksArray = [];
     });
-
-
   }
-
   ngOnInit(): void {
   }
 
