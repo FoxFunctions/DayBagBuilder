@@ -8,6 +8,7 @@ const PROXY_CONFIG = [
     context: [
       "/weatherforecast",
       "/bagitem",
+      "/bagsave"
    ],
     target: target,
     secure: false,
