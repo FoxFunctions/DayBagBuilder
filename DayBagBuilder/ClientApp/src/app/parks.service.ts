@@ -8,11 +8,11 @@ import { Parks } from './Parks';
   providedIn: 'root'
 })
 export class ParksService {
-locationString: string = "";
+locationString2: string = "";
   constructor(private http: HttpClient) { }
 
-  ShowParkActivites(): Observable <Parks>{
-    return this.http.get<Parks>("https://developer.nps.gov/api/v1/activities?q="+this.locationString+"&api_key=kXqcWPcYb2fgVVAVO30bfMdi217VOjEgkWdL7uLV");
+  ShowParkActivities(): Observable <Parks>{
+    return this.http.get<Parks>("https://developer.nps.gov/api/v1/activities?q="+this.locationString2+"&api_key=kXqcWPcYb2fgVVAVO30bfMdi217VOjEgkWdL7uLV");
   }
 
 }
