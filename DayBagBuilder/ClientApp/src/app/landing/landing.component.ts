@@ -26,11 +26,10 @@ export class LandingComponent implements OnInit {
   tripLocation: string = "";
   hikeTimeStart: Date = new Date();
   hikeDateStart: Date = new Date();
+  hikeStringStart: string = "";
 
   constructor(private weather: WeatherForecastService, private hikingBag: HikingBagService, private parks: ParksService, private router: Router) { 
- 
 
-   
 
   }
 
@@ -48,6 +47,8 @@ export class LandingComponent implements OnInit {
     this.weather.locationString2 = this.locationString2;
     this.weather.hikeTimeStart = this.hikeTimeStart;
     this.weather.hikeDateStart = this.hikeDateStart;
+    this.weather.hikeStringStart = this.hikeStringStart;
+
     this.router.navigateByUrl(`bag-builder`);
   }
 

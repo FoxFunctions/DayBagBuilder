@@ -18,14 +18,20 @@
     <p>{{r.time}}: {{r.temp_f}} F</p>
 </div>
 
+
+<div *ngIf="hourlyForecastDay2.length > 0">
 <h3>Hourly Forecast for {{forecastArray[0].forecast.forecastday[1].date}}</h3>
 <div *ngFor="let r of hourlyForecastDay2; index as j">
     
     <p>{{r.time}}: {{r.temp_f}} F</p>
 </div>
+</div>
 
+
+<div *ngIf="hourlyForecastDay3.length > 0">
 <h3>Hourly Forecast for {{forecastArray[0].forecast.forecastday[2].date}}</h3>
 <div *ngFor="let r of hourlyForecastDay3; index as j">
   
     <p>{{r.time}}: {{r.temp_f}} F</p>
+</div>
 </div>
