@@ -7,10 +7,10 @@ import { WeatherForecast } from './WeatherForecast';
   providedIn: 'root'
 })
 export class WeatherForecastService {
-locationString: string = "";
+locationString2: string = "";
   constructor(private http: HttpClient) { }
 
   GetForecast(): Observable<WeatherForecast>{
-    return this.http.get<WeatherForecast>("https://api.weatherapi.com/v1/forecast.json?key=decce63ab48c465fbff134804221506&q="+this.locationString+"&days=3&aqi=yes&alerts=yes");
+    return this.http.get<WeatherForecast>("https://api.weatherapi.com/v1/forecast.json?key=decce63ab48c465fbff134804221506&q="+this.locationString2+"&days=3&aqi=yes&alerts=yes");
   }
 }
