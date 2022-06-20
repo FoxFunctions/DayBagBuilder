@@ -1,17 +1,28 @@
 
-
-<!-- <p>enter your location</p>
-<input type="text" name="test2" [(ngModel)]="locationString2">
-<button (click)="ShowParkActivities()">test</button>
-<div *ngFor="let p of parksArray; index as i">
-<p>{{parksArray[0].data[i].name}}</p>
-</div> -->
-
-<p>Enter Location</p>
+<p>Enter trip Location</p>
 <input type="text" [(ngModel)]="locationString2">
 <button (click)="ShowParkActivities()">test</button>
-<div *ngFor="let a of activitiesArray;">
+<p *ngIf="tripLocation !== ''">Cool, you're going to {{tripLocation}}</p>
+<p></p>
 
-<p>{{a}}</p>
+<label for="start">Hike Start date:</label>
 
-</div>
+<input type="date" id="start" name="trip-start"
+       value=""
+       min="2022-06-20" max="2040-12-31" [(ngModel)]="hikeDateStart">
+
+       <p></p>
+<label for="hikeTime">Choose a time for your Hike</label>
+
+<input type="time" id="hikeTime" name="hikeTime"
+       min="0:00" max="24:00" required [(ngModel)]="hikeTimeStart" >
+
+<small>Really need to do somethign with this</small>
+
+<p></p>
+<p></p>
+
+
+<p>How many hours?</p>
+<input type="number" max="72" min="1" [(ngModel)]="tripDuration">
+<button (click)="GetTripDurationAndMoveToBagBuilder()">move on</button>
