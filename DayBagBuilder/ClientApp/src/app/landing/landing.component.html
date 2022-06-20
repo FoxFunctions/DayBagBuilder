@@ -1,17 +1,51 @@
 
-
-<!-- <p>enter your location</p>
-<input type="text" name="test2" [(ngModel)]="locationString2">
-<button (click)="ShowParkActivities()">test</button>
-<div *ngFor="let p of parksArray; index as i">
-<p>{{parksArray[0].data[i].name}}</p>
-</div> -->
-
-<p>Enter Location</p>
+<p>Enter trip Location</p>
 <input type="text" [(ngModel)]="locationString2">
 <button (click)="ShowParkActivities()">test</button>
-<div *ngFor="let a of activitiesArray;">
+<p *ngIf="tripLocation !== ''">Cool, you're going to {{tripLocation}}</p>
+<p></p>
 
-<p>{{a}}</p>
+<label for="start">Hike Start date: DO SOMETHING WITH THIS</label>
 
-</div>
+<input type="date" id="start" name="trip-start"
+       value=""
+       min="2022-06-20" max="2040-12-31" [(ngModel)]="hikeDateStart">
+
+       <p></p>
+
+<label for="HikeStart">What time will your hike begin?</label>
+
+<select name="HikeStart" id="HikeStart" [(ngModel)]="hikeStringStart">
+  <option value="00:00">12:00 AM</option>
+  <option value="01:00">1:00 AM</option>
+  <option value="02:00">2:00 AM</option>
+  <option value="03:00">3:00 AM</option>
+  <option value="04:00">4:00 AM</option>
+  <option value="05:00">5:00 AM</option>
+  <option value="06:00">6:00 AM</option>
+  <option value="07:00">7:00 AM</option>
+  <option value="08:00">8:00 AM</option>
+  <option value="09:00">9:00 AM</option>
+  <option value="10:00">10:00 AM</option>
+  <option value="11:00">11:00 AM</option>
+  <option value="12:00">12:00 PM</option>
+  <option value="13:00">1:00 PM</option>
+  <option value="14:00">2:00 PM</option>
+  <option value="15:00">3:00 PM</option>
+  <option value="16:00">4:00 PM</option>
+  <option value="17:00">5:00 PM</option>
+  <option value="18:00">6:00 PM</option>
+  <option value="19:00">7:00 PM</option>
+  <option value="20:00">8:00 PM</option>
+  <option value="21:00">9:00 PM</option>
+  <option value="22:00">10:00 PM</option>
+  <option value="23:00">11:00 PM</option>
+</select> 
+
+<p></p>
+<p></p>
+
+
+<p>How many hours?</p>
+<input type="number" max="72" min="1" [(ngModel)]="tripDuration">
+<button (click)="GetTripDurationAndMoveToBagBuilder()">move on</button>

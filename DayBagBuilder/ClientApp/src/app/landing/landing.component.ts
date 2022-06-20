@@ -7,6 +7,7 @@ import { BagItem } from '../BagItem';
 import { BagSave } from '../BagSave';
 import { ParksService } from '../parks.service';
 import { Parks } from '../Parks';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -21,8 +22,15 @@ export class LandingComponent implements OnInit {
   hikingBagArray: BagItem[] = [];
   parksArray: Parks [] =[];
   activitiesArray: string[]= [];
-  constructor(private weather: WeatherForecastService, private hikingBag: HikingBagService, private parks: ParksService) { 
-  
+  tripDuration: number = 0;
+  tripLocation: string = "";
+  hikeTimeStart: Date = new Date();
+  hikeDateStart: Date = new Date();
+  hikeStringStart: string = "";
+
+  constructor(private weather: WeatherForecastService, private hikingBag: HikingBagService, private parks: ParksService, private router: Router) { 
+
+
   }
 
   ShowForecast(): void {
@@ -30,6 +38,18 @@ export class LandingComponent implements OnInit {
     this.weather.GetForecast().subscribe((response) => {
     this.forecastArray.push(response);
     });
+  }
+
+  GetTripDurationAndMoveToBagBuilder(): void{
+    this.weather.hikeTimeStart.setMinutes(0);
+    this.weather.tripDuration = this.tripDuration;
+    this.parks.locationString2 = this.locationString2;
+    this.weather.locationString2 = this.locationString2;
+    this.weather.hikeTimeStart = this.hikeTimeStart;
+    this.weather.hikeDateStart = this.hikeDateStart;
+    this.weather.hikeStringStart = this.hikeStringStart;
+
+    this.router.navigateByUrl(`bag-builder`);
   }
 
   ShowHikingBagItems(): void {
@@ -41,6 +61,7 @@ export class LandingComponent implements OnInit {
     this.activitiesArray = [];
     this.parks.locationString2 = this.locationString2;
     this.weather.locationString2 = this.locationString2;
+    this.tripLocation = this.locationString2;
     this.parks.ShowParkActivities().subscribe((response) => {
     this.parksArray.push(response);
   
