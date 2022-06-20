@@ -8,6 +8,7 @@ import { BagSave } from '../BagSave';
 import { ParksService } from '../parks.service';
 import { Parks } from '../Parks';
 
+
 @Component({
   selector: 'app-landing',
   templateUrl: './landing.component.html',
@@ -25,7 +26,7 @@ export class LandingComponent implements OnInit {
   }
 
   ShowForecast(): void {
-    this.weather.locationString = this.locationString;
+    this.weather.locationString2 = this.locationString;
     this.weather.GetForecast().subscribe((response) => {
     this.forecastArray.push(response);
     });
@@ -37,7 +38,9 @@ export class LandingComponent implements OnInit {
     });
   }
   ShowParkActivities(): void  {
+    this.activitiesArray = [];
     this.parks.locationString2 = this.locationString2;
+    this.weather.locationString2 = this.locationString2;
     this.parks.ShowParkActivities().subscribe((response) => {
     this.parksArray.push(response);
   
