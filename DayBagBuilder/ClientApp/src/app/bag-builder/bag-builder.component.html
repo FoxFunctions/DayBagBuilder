@@ -1,0 +1,31 @@
+<div *ngFor="let f of forecastArray; index as i">
+<h3>Weather Forecast for {{f.location.name}}, {{f.location.region}}</h3>
+
+<h4>Current Conditions</h4>
+<img src="{{f.current.condition.icon}}" width="50" height="auto">
+<span>{{f.current.condition.text}}</span>
+<p>{{f.current.temp_f}} F</p>
+<span>Wind: {{f.current.wind_mph}} mph {{f.current.wind_dir}}</span>
+
+<div *ngFor="let h of dailyForecast;">
+
+<p>Daily Test: {{h.day.maxtemp_f}}</p>
+</div>
+
+<h3>Hourly Forecast for {{forecastArray[0].forecast.forecastday[0].date}}</h3>
+<div *ngFor="let r of hourlyForecastDay1; index as j">
+    
+    <p>{{r.time}}: {{r.temp_f}} F</p>
+</div>
+
+<h3>Hourly Forecast for {{forecastArray[0].forecast.forecastday[1].date}}</h3>
+<div *ngFor="let r of hourlyForecastDay2; index as j">
+    
+    <p>{{r.time}}: {{r.temp_f}} F</p>
+</div>
+
+<h3>Hourly Forecast for {{forecastArray[0].forecast.forecastday[2].date}}</h3>
+<div *ngFor="let r of hourlyForecastDay3; index as j">
+  
+    <p>{{r.time}}: {{r.temp_f}} F</p>
+</div>

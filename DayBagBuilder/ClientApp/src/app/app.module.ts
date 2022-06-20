@@ -12,6 +12,7 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import {LandingComponent} from './landing/landing.component';
 import { WeatherForecastService } from './weather-forecast.service';
 import { ParksService } from './parks.service';
+import { BagBuilderComponent } from './bag-builder/bag-builder.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ParksService } from './parks.service';
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
-    LandingComponent
+    LandingComponent,
+    BagBuilderComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -31,6 +33,7 @@ import { ParksService } from './parks.service';
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'landing', component: LandingComponent},
+      { path: 'bag-builder', component: BagBuilderComponent}
     ])
   ],
   providers: [WeatherForecastService, ParksService],
