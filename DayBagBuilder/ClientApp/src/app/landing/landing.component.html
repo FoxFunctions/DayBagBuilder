@@ -5,13 +5,15 @@
 <p *ngIf="tripLocation !== ''">Cool, you're going to {{tripLocation}}</p>
 <p></p>
 
-<label for="start">Hike Start date: DO SOMETHING WITH THIS</label>
+<label for="Date">Which day will your hike begin?</label>
 
-<input type="date" id="start" name="trip-start"
-       value=""
-       min="2022-06-20" max="2040-12-31" [(ngModel)]="hikeDateStart">
+<select name="Date" id="Date" [(ngModel)]="hikeDayStart">
+  <option value="today">Today</option>
+  <option value="tomorrow">Tomorrow</option>
+  <option value="the-day-after">The day after tomorrow</option>
+</select>
 
-       <p></p>
+<p></p>
 
 <label for="HikeStart">What time will your hike begin?</label>
 

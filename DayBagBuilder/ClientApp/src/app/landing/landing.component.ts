@@ -24,9 +24,8 @@ export class LandingComponent implements OnInit {
   activitiesArray: string[]= [];
   tripDuration: number = 0;
   tripLocation: string = "";
-  hikeTimeStart: Date = new Date();
-  hikeDateStart: Date = new Date();
   hikeStringStart: string = "";
+  hikeDayStart: string = "";
 
   constructor(private weather: WeatherForecastService, private hikingBag: HikingBagService, private parks: ParksService, private router: Router) { 
 
@@ -41,13 +40,11 @@ export class LandingComponent implements OnInit {
   }
 
   GetTripDurationAndMoveToBagBuilder(): void{
-    this.weather.hikeTimeStart.setMinutes(0);
     this.weather.tripDuration = this.tripDuration;
     this.parks.locationString2 = this.locationString2;
     this.weather.locationString2 = this.locationString2;
-    this.weather.hikeTimeStart = this.hikeTimeStart;
-    this.weather.hikeDateStart = this.hikeDateStart;
     this.weather.hikeStringStart = this.hikeStringStart;
+    this.weather.hikeDayStart = this.hikeDayStart;
 
     this.router.navigateByUrl(`bag-builder`);
   }

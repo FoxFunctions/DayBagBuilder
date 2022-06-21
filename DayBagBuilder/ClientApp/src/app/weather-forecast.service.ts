@@ -9,8 +9,7 @@ import { WeatherForecast } from './WeatherForecast';
 export class WeatherForecastService {
 locationString2: string = "";
 tripDuration: number = 0;
-hikeTimeStart: Date = new Date();
-hikeDateStart: Date = new Date();
+hikeDayStart: string = "";
 hikeStringStart: string = "";
   constructor(private http: HttpClient) { }
 
