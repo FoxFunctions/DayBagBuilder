@@ -7,25 +7,30 @@
 <p>{{f.current.temp_f}} F</p>
 <span>Wind: {{f.current.wind_mph}} mph {{f.current.wind_dir}}</span>
 
-<div *ngFor="let h of dailyForecast;">
+</div> 
 
-<p>Daily Test: {{h.day.maxtemp_f}}</p>
-</div>
-
+<div *ngIf="hourlyForecastDay1.length > 0">
 <h3>Hourly Forecast for {{forecastArray[0].forecast.forecastday[0].date}}</h3>
 <div *ngFor="let r of hourlyForecastDay1; index as j">
     
     <p>{{r.time}}: {{r.temp_f}} F</p>
 </div>
+</div>
 
+
+<div *ngIf="hourlyForecastDay2.length > 0">
 <h3>Hourly Forecast for {{forecastArray[0].forecast.forecastday[1].date}}</h3>
 <div *ngFor="let r of hourlyForecastDay2; index as j">
     
     <p>{{r.time}}: {{r.temp_f}} F</p>
 </div>
+</div>
 
+
+<div *ngIf="hourlyForecastDay3.length > 0">
 <h3>Hourly Forecast for {{forecastArray[0].forecast.forecastday[2].date}}</h3>
 <div *ngFor="let r of hourlyForecastDay3; index as j">
   
     <p>{{r.time}}: {{r.temp_f}} F</p>
+</div>
 </div>

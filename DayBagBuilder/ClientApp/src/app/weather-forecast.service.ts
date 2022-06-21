@@ -8,6 +8,9 @@ import { WeatherForecast } from './WeatherForecast';
 })
 export class WeatherForecastService {
 locationString2: string = "";
+tripDuration: number = 0;
+hikeDayStart: string = "";
+hikeStringStart: string = "";
   constructor(private http: HttpClient) { }
 
   GetForecast(): Observable<WeatherForecast>{
