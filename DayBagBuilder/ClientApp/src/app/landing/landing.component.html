@@ -50,4 +50,8 @@
 
 <p>How many hours?</p>
 <input type="number" max="72" min="1" [(ngModel)]="tripDuration">
+
+
+<p>How many people?</p>
+<input type="number" min="1" [(ngModel)]="totalPartySize">
 <button (click)="GetTripDurationAndMoveToBagBuilder()">move on</button>
