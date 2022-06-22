@@ -8,42 +8,40 @@
 <span>Wind: {{f.current.wind_mph}} mph {{f.current.wind_dir}}</span>
 
 </div> 
-
+<h3>Day 1 avg</h3>
 <p>UV: {{forecastArray[0].forecast.forecastday[0].day.uv}}</p>
 <p>Chance of Rain: {{forecastArray[0].forecast.forecastday[0].day.daily_chance_of_rain}}%</p>
 <p>Average Temp: {{forecastArray[0].forecast.forecastday[0].day.avgtemp_f}}°F</p>
 <p>Chance of Snow: {{forecastArray[0].forecast.forecastday[0].day.daily_chance_of_snow}}%</p>
 
+<h3>Day 2 avg</h3>
 <p>UV: {{forecastArray[0].forecast.forecastday[1].day.uv}}</p>
 <p>Chance of Rain: {{forecastArray[0].forecast.forecastday[1].day.daily_chance_of_rain}}%</p>
 <p>Average Temp: {{forecastArray[0].forecast.forecastday[1].day.avgtemp_f}}°F</p>
 <p>Chance of Snow: {{forecastArray[0].forecast.forecastday[1].day.daily_chance_of_snow}}%</p>
 
+<h3>Day 3 avg</h3>
 <p>UV: {{forecastArray[0].forecast.forecastday[2].day.uv}}</p>
 <p>Chance of Rain: {{forecastArray[0].forecast.forecastday[2].day.daily_chance_of_rain}}%</p>
 <p>Average Temp: {{forecastArray[0].forecast.forecastday[2].day.avgtemp_f}}°F</p>
 <p>Chance of Snow: {{forecastArray[0].forecast.forecastday[2].day.daily_chance_of_snow}}%</p>
+
+
 <div *ngIf="hourlyForecastDay1.length > 0">
 <h3>Hourly Forecast for {{forecastArray[0].forecast.forecastday[0].date}}</h3>
 
 <div *ngFor="let r of hourlyForecastDay1; index as j">
-    
-    <p>{{r.time}}: {{r.temp_f}} °F</p>
-   
-        
-
-
-    
+    <span>{{r.time}}: {{r.temp_f}} °F | {{r.chance_of_rain}}% chance of rain. | {{r.chance_of_snow}}% chance of snow.</span>
+    <img src="{{r.condition.icon}}" width="50" height="auto">
 </div>
 
 </div>
-
 
 <div *ngIf="hourlyForecastDay2.length > 0">
 <h3>Hourly Forecast for {{forecastArray[0].forecast.forecastday[1].date}}</h3>
 <div *ngFor="let r of hourlyForecastDay2; index as j">
-    
-    <p>{{r.time}}: {{r.temp_f}} °F</p>
+    <span>{{r.time}}: {{r.temp_f}} °F | {{r.chance_of_rain}}% chance of rain. | {{r.chance_of_snow}}% chance of snow.</span>
+    <img src="{{r.condition.icon}}" width="50" height="auto">
 </div>
 </div>
 
@@ -51,12 +49,16 @@
 <div *ngIf="hourlyForecastDay3.length > 0">
 <h3>Hourly Forecast for {{forecastArray[0].forecast.forecastday[2].date}}</h3>
 <div *ngFor="let r of hourlyForecastDay3; index as j">
-  
-    <p>{{r.time}}: {{r.temp_f}} °F</p>
+    <span>{{r.time}}: {{r.temp_f}} °F | {{r.chance_of_rain}}% chance of rain. | {{r.chance_of_snow}}% chance of snow.</span>
+    <img src="{{r.condition.icon}}" width="50" height="auto">
 </div>
 </div>
 
 
 <div *ngFor="let b of requiredItems">
     Items: {{b.itemName}}
+</div>
+
+<div>
+    <p>For your party size of {{totalPartySize}} You will need between {{waterUnitsLow}} and {{waterUnitsHigh}} cups of water.</p>
 </div>

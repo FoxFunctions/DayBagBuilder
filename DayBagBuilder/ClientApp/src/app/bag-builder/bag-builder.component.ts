@@ -26,6 +26,7 @@ export class BagBuilderComponent implements OnInit {
   waterUnitsLow: number = 0; // this value is expressed as 1 cup of water
   bagItem: BagItem[] = [];
   requiredItems: BagItem[] = [];
+  totalPartySize: number = this.weather.totalPartySize;
   constructor(private weather: WeatherForecastService, private hikingBag: HikingBagService, private parks: ParksService) { 
    
   }
