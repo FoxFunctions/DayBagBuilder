@@ -53,7 +53,7 @@ export class BagBuilderComponent implements OnInit {
     this.hotHourCalculator();
     this.waterCalculator();
     console.log(this.hotHourCount);
-    console.log(this.waterUnits);
+    console.log(this.waterUnitsHigh);
     });
 
   }
@@ -260,5 +260,112 @@ export class BagBuilderComponent implements OnInit {
    this.waterUnitsHigh = (this.weather.tripDuration * 2 * this.weather.totalPartySize) + (this.hotHourCount * this.weather.totalPartySize);
    this.waterUnitsLow = this.waterUnitsHigh/2;
  }
- 
+
+ isColdWeather1(): boolean {
+  if(this.dailyForecast[0].day.avgtemp_f <= 46){
+     return true;
+  }else{
+    return false;
+  }
+ }
+ isColdWeather2(): boolean {
+  if(this.dailyForecast[1].day.avgtemp_f <= 46){
+     return true;
+  }else{
+  return false;
+  }
 }
+isColdWeather3(): boolean {
+  if(this.dailyForecast[2].day.avgtemp_f <= 46){
+     return true;
+  }else{
+  return false;
+  }
+
+}
+isHotWeather1():boolean{
+  if(this.dailyForecast[0].day.avgtemp_f >= 85){
+    return true;
+ }else{
+ return false;
+ }
+}
+isHotWeather2():boolean{
+  if(this.dailyForecast[1].day.avgtemp_f >= 85){
+    return true;
+ }else{
+ return false;
+ }
+}
+isHotWeather3():boolean{
+  if(this.dailyForecast[2].day.avgtemp_f >= 85){
+    return true;
+ }else{
+ return false;
+ }
+}
+isHighUv1(): boolean{
+  if(this.dailyForecast[0].day.uv >= 5){
+    return true;
+  }else{
+    return false;
+  }
+}
+isHighUv2(): boolean{
+  if(this.dailyForecast[1].day.uv >= 5){
+    return true;
+  }else{
+    return false;
+  }
+}
+isHighUv3(): boolean{
+  if(this.dailyForecast[2].day.uv >= 5){
+    return true;
+  }else{
+    return false;
+  }
+}
+isGoingToRain1(): boolean{
+  if(this.dailyForecast[0].day.daily_chance_of_rain >= 40){
+    return true;
+  }else{
+    return false;
+  }
+}
+isGoingToRain2(): boolean{
+  if(this.dailyForecast[1].day.daily_chance_of_rain >= 40){
+    return true;
+  }else{
+    return false;
+  }
+}
+isGoingToRain3(): boolean{
+  if(this.dailyForecast[2].day.daily_chance_of_rain >= 40){
+    return true;
+  }else{
+    return false;
+  }
+}
+isGoingToSnow1(): boolean{
+  if(this.dailyForecast[0].day.daily_chance_of_snow >= 40){
+    return true;
+  }else{
+    return false;
+  }
+}
+isGoingToSnow2(): boolean{
+  if(this.dailyForecast[1].day.daily_chance_of_snow >= 40){
+    return true;
+  }else{
+    return false;
+  }
+}
+isGoingToSnow3(): boolean{
+  if(this.dailyForecast[2].day.daily_chance_of_snow >= 40){
+    return true;
+  }else{
+    return false;
+  }
+}
+}
+
