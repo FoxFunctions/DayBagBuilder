@@ -478,7 +478,7 @@ getRequiredBagItems(): void{
   if(this.isHighUv1()){
     if(this.weather.hikeDayStart === "today"){
     for(let i = 0; i < this.bagItem.length; i++){
-      if(this.bagItem[i].forSnow && !this.requiredItems.includes(this.bagItem[i])){
+      if(this.bagItem[i].forSunny && !this.requiredItems.includes(this.bagItem[i])){
         this.requiredItems.push(this.bagItem[i])
       }
     }
@@ -487,14 +487,14 @@ getRequiredBagItems(): void{
   if (this.isHighUv2()){
     if(this.weather.hikeDayStart === "today" && this.hikeTimeStartAsIndex + this.weather.tripDuration > 23){
     for(let i = 0; i < this.bagItem.length; i++){
-      if(this.bagItem[i].forSnow && !this.requiredItems.includes(this.bagItem[i])){
+      if(this.bagItem[i].forSunny && !this.requiredItems.includes(this.bagItem[i])){
         this.requiredItems.push(this.bagItem[i])
       }
     }
   }
   else if (this.weather.hikeDayStart === "tomorrow" ){
     for(let i = 0; i < this.bagItem.length; i++){
-      if(this.bagItem[i].forSnow && !this.requiredItems.includes(this.bagItem[i])){
+      if(this.bagItem[i].forSunny && !this.requiredItems.includes(this.bagItem[i])){
         this.requiredItems.push(this.bagItem[i])
       }
     }
@@ -503,21 +503,21 @@ getRequiredBagItems(): void{
    if (this.isHighUv3()){
     if(this.weather.hikeDayStart === "today" && this.hikeTimeStartAsIndex + this.weather.tripDuration >47){
     for(let i = 0; i < this.bagItem.length; i++){
-      if(this.bagItem[i].forSnow && !this.requiredItems.includes(this.bagItem[i])){
+      if(this.bagItem[i].forSunny && !this.requiredItems.includes(this.bagItem[i])){
         this.requiredItems.push(this.bagItem[i])
       }
     }
   }
   if (this.weather.hikeDayStart === "tomorrow" && this.hikeTimeStartAsIndex + this.weather.tripDuration > 23){
     for(let i = 0; i < this.bagItem.length; i++){
-      if(this.bagItem[i].forSnow && !this.requiredItems.includes(this.bagItem[i])){
+      if(this.bagItem[i].forSunny && !this.requiredItems.includes(this.bagItem[i])){
         this.requiredItems.push(this.bagItem[i])
       }
     }
   }
   if(this.weather.hikeDayStart === "the-day-after"){
     for(let i = 0; i < this.bagItem.length; i++){
-      if(this.bagItem[i].forSnow && !this.requiredItems.includes(this.bagItem[i])){
+      if(this.bagItem[i].forSunny && !this.requiredItems.includes(this.bagItem[i])){
         this.requiredItems.push(this.bagItem[i])
       }
     }
@@ -526,7 +526,7 @@ getRequiredBagItems(): void{
   if(this.isHotWeather1()){
     if(this.weather.hikeDayStart === "today"){
     for(let i = 0; i < this.bagItem.length; i++){
-      if(this.bagItem[i].forSnow && !this.requiredItems.includes(this.bagItem[i])){
+      if(this.bagItem[i].forHot && !this.requiredItems.includes(this.bagItem[i])){
         this.requiredItems.push(this.bagItem[i])
       }
     }
@@ -535,7 +535,7 @@ getRequiredBagItems(): void{
   if (this.isHotWeather2()){
     if(this.weather.hikeDayStart === "today" && this.hikeTimeStartAsIndex + this.weather.tripDuration > 23){
     for(let i = 0; i < this.bagItem.length; i++){
-      if(this.bagItem[i].forSnow && !this.requiredItems.includes(this.bagItem[i])){
+      if(this.bagItem[i].forHot && !this.requiredItems.includes(this.bagItem[i])){
         this.requiredItems.push(this.bagItem[i])
       }
     }
@@ -558,14 +558,14 @@ getRequiredBagItems(): void{
   }
   if (this.weather.hikeDayStart === "tomorrow" && this.hikeTimeStartAsIndex + this.weather.tripDuration > 23){
     for(let i = 0; i < this.bagItem.length; i++){
-      if(this.bagItem[i].forSnow && !this.requiredItems.includes(this.bagItem[i])){
+      if(this.bagItem[i].forHot && !this.requiredItems.includes(this.bagItem[i])){
         this.requiredItems.push(this.bagItem[i])
       }
     }
   }
   if(this.weather.hikeDayStart === "the-day-after"){
     for(let i = 0; i < this.bagItem.length; i++){
-      if(this.bagItem[i].forSnow && !this.requiredItems.includes(this.bagItem[i])){
+      if(this.bagItem[i].forHot && !this.requiredItems.includes(this.bagItem[i])){
         this.requiredItems.push(this.bagItem[i])
       }
     }
@@ -574,7 +574,7 @@ getRequiredBagItems(): void{
   if(this.isColdWeather1()){
     if(this.weather.hikeDayStart === "today"){
     for(let i = 0; i < this.bagItem.length; i++){
-      if(this.bagItem[i].forSnow && !this.requiredItems.includes(this.bagItem[i])){
+      if(this.bagItem[i].forCold && !this.requiredItems.includes(this.bagItem[i])){
         this.requiredItems.push(this.bagItem[i])
       }
     }
@@ -583,14 +583,14 @@ getRequiredBagItems(): void{
   if (this.isColdWeather2()){
     if(this.weather.hikeDayStart === "today" && this.hikeTimeStartAsIndex + this.weather.tripDuration > 23){
     for(let i = 0; i < this.bagItem.length; i++){
-      if(this.bagItem[i].forSnow && !this.requiredItems.includes(this.bagItem[i])){
+      if(this.bagItem[i].forCold && !this.requiredItems.includes(this.bagItem[i])){
         this.requiredItems.push(this.bagItem[i])
       }
     }
   }
   else if (this.weather.hikeDayStart === "tomorrow" ){
     for(let i = 0; i < this.bagItem.length; i++){
-      if(this.bagItem[i].forSnow && !this.requiredItems.includes(this.bagItem[i])){
+      if(this.bagItem[i].forCold && !this.requiredItems.includes(this.bagItem[i])){
         this.requiredItems.push(this.bagItem[i])
       }
     }
@@ -599,21 +599,21 @@ getRequiredBagItems(): void{
    if (this.isColdWeather3()){
     if(this.weather.hikeDayStart === "today" && this.hikeTimeStartAsIndex + this.weather.tripDuration >47){
     for(let i = 0; i < this.bagItem.length; i++){
-      if(this.bagItem[i].forSnow && !this.requiredItems.includes(this.bagItem[i])){
+      if(this.bagItem[i].forCold && !this.requiredItems.includes(this.bagItem[i])){
         this.requiredItems.push(this.bagItem[i])
       }
     }
   }
   if (this.weather.hikeDayStart === "tomorrow" && this.hikeTimeStartAsIndex + this.weather.tripDuration > 23){
     for(let i = 0; i < this.bagItem.length; i++){
-      if(this.bagItem[i].forSnow && !this.requiredItems.includes(this.bagItem[i])){
+      if(this.bagItem[i].forCold && !this.requiredItems.includes(this.bagItem[i])){
         this.requiredItems.push(this.bagItem[i])
       }
     }
   }
   if(this.weather.hikeDayStart === "the-day-after"){
     for(let i = 0; i < this.bagItem.length; i++){
-      if(this.bagItem[i].forSnow && !this.requiredItems.includes(this.bagItem[i])){
+      if(this.bagItem[i].forCold && !this.requiredItems.includes(this.bagItem[i])){
         this.requiredItems.push(this.bagItem[i])
       }
     }
