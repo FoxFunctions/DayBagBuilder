@@ -11,6 +11,8 @@ locationString2: string = "";
 tripDuration: number = 0;
 hikeDayStart: string = "";
 hikeStringStart: string = "";
+forecastArray: WeatherForecast[] = [];
+totalPartySize: number = 0;
   constructor(private http: HttpClient) { }
 
   GetForecast(): Observable<WeatherForecast>{
