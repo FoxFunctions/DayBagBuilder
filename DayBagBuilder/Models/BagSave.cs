@@ -5,9 +5,8 @@ namespace DayBagBuilder.Models
 {
     public partial class BagSave
     {
-        public int BagId { get; set; }
-        public int? ItemId { get; set; }
-
-        public virtual BagItem? Item { get; set; }
+        public int Id { get; set; }
+        public string? UserName { get; set; }
+        public string? ItemName { get; set; }
     }
 }

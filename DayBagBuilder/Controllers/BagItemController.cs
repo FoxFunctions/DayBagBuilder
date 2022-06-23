@@ -28,11 +28,11 @@ namespace DayBagBuilder.Controllers
         }
 
         [HttpPut("CreateNewBagItem")]
-        public string CreateBagItem(BagItem b)
+        public string CreateBagItem(BagItem c)
         {
-            hb.BagItems.Add(b);
+            hb.BagItems.Add(c);
             hb.SaveChanges();
-            return $"{b.ItemName} was successfully added to the database";
+            return $"{c.ItemName} was successfully added to the database";
         }
 
         [HttpDelete("DeleteBagItem/{id}")]
