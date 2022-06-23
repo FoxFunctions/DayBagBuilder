@@ -27,17 +27,19 @@ export class LandingComponent implements OnInit {
   hikeStringStart: string = "";
   hikeDayStart: string = "";
   totalPartySize: number = 0;
+  bagSaveArray: BagSave[] = [];
+  userName: string = "";
 
   constructor(private weather: WeatherForecastService, private hikingBag: HikingBagService, private parks: ParksService, private router: Router) { 
 
-
   }
-
-  ShowForecast(): void {
-    this.weather.locationString2 = this.locationString;
-    this.weather.GetForecast().subscribe((response) => {
-    this.forecastArray.push(response);
-    });
+  
+  ShowBagSavesByUserName(): void{
+    this.hikingBag.GetBagSavesByUserName(this.userName).subscribe((response) =>{
+      this.bagSaveArray = response;
+      this.hikingBag.bagSaveArray = this.bagSaveArray;
+      this.hikingBag.userName = this.userName;
+    })
   }
 
   GetTripDurationAndMoveToBagBuilder(): void{
@@ -47,7 +49,9 @@ export class LandingComponent implements OnInit {
     this.weather.hikeStringStart = this.hikeStringStart;
     this.weather.hikeDayStart = this.hikeDayStart;
     this.weather.totalPartySize = this.totalPartySize;
-
+    this.ShowBagSavesByUserName();
+    this.ShowParkActivities();
+    this.parks.activitiesArray = this.activitiesArray;
     this.router.navigateByUrl(`bag-builder`);
   }
 
@@ -65,7 +69,7 @@ export class LandingComponent implements OnInit {
     this.parksArray.push(response);
   
     for (let i = 0; i < this.parksArray[0].data.length; i++){
-
+      
       this.activitiesArray.push(this.parksArray[0].data[i].name);
     } 
     this.parksArray = [];

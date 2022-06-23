@@ -11,6 +11,7 @@ import { User } from './User';
 export class HikingBagService {
   urlRoot: String;
   bagSaveArray: BagSave[] = []; 
+  userName: string = "";
 
 
   constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) { 

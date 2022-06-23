@@ -28,6 +28,7 @@ export class CustomItemsComponent implements OnInit {
     this.hikingBag.GetBagSavesByUserName(this.userName).subscribe((response) =>{
       this.bagSaveArray = response;
       this.hikingBag.bagSaveArray = this.bagSaveArray;
+      this.hikingBag.userName = this.userName;
       console.log(this.bagSaveArray);
     })
   }

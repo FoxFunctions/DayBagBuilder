@@ -8,7 +8,7 @@
 <span>Wind: {{f.current.wind_mph}} mph {{f.current.wind_dir}}</span>
 
 </div> 
-<h3>Day 1 avg</h3>
+<!--<h3>Day 1 avg</h3>
 <p>UV: {{forecastArray[0].forecast.forecastday[0].day.uv}}</p>
 <p>Chance of Rain: {{forecastArray[0].forecast.forecastday[0].day.daily_chance_of_rain}}%</p>
 <p>Average Temp: {{forecastArray[0].forecast.forecastday[0].day.avgtemp_f}}°F</p>
@@ -24,7 +24,7 @@
 <p>UV: {{forecastArray[0].forecast.forecastday[2].day.uv}}</p>
 <p>Chance of Rain: {{forecastArray[0].forecast.forecastday[2].day.daily_chance_of_rain}}%</p>
 <p>Average Temp: {{forecastArray[0].forecast.forecastday[2].day.avgtemp_f}}°F</p>
-<p>Chance of Snow: {{forecastArray[0].forecast.forecastday[2].day.daily_chance_of_snow}}%</p>
+<p>Chance of Snow: {{forecastArray[0].forecast.forecastday[2].day.daily_chance_of_snow}}%</p> -->
 
 
 <div *ngIf="hourlyForecastDay1.length > 0">
@@ -53,16 +53,31 @@
     <img src="{{r.condition.icon}}" width="50" height="auto">
 </div>
 </div>
-
-
+<br>
+<p *ngIf="bagSaveArray.length === 0">Based on the weather conditions for your hike, we are recommending the following items</p>
+<p *ngIf="bagSaveArray.length > 0">Based on the weather conditions for your hike, and the custom items you added, we are recommending the following items</p>
 <div *ngFor="let b of requiredItems">
-    Items: {{b.itemName}}
+   {{b.itemName}}
 </div>
-<p>You also requested that these items be displayed in your bag</p>
+<div>
+    
+</div>
+
 <div *ngFor="let b of bagSaveArray">
     {{b.itemName}}
 </div>
+<br>
+<p *ngIf="totalPartySize > 0">For your party size of {{totalPartySize}} You will need between {{waterUnitsLow}} and {{waterUnitsHigh}} cups of water.</p>
+<p></p>
+<p *ngIf="activitiesArray.length > 0">We noticed that your hike is taking place inside a park The following activitives are available and you may want to bring additional items</p>
+<p *ngIf="activitiesArray.length === 0">We did not find a park in your area</p>
 
-<div>
-    <p>For your party size of {{totalPartySize}} You will need between {{waterUnitsLow}} and {{waterUnitsHigh}} cups of water.</p>
+<div *ngIf="activitiesArray.length > 0">
+    <div *ngFor="let a of activitiesArray">
+        {{a}}
+    </div>
 </div>
+<p></p>
+<p>Would you like to add custom items to your list?</p>
+<button (click)="MoveToCustomItems()">Add More items</button>
+

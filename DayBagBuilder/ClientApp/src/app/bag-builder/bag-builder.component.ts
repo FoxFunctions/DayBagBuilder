@@ -6,6 +6,7 @@ import { BagItem } from '../BagItem';
 import { BagSave } from '../BagSave';
 import { HikingBagService } from '../hiking-bag.service';
 import { Forecastday } from '../WeatherForecast';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-bag-builder',
@@ -27,25 +28,40 @@ export class BagBuilderComponent implements OnInit {
   bagItem: BagItem[] = [];
   requiredItems: BagItem[] = [];
   totalPartySize: number = this.weather.totalPartySize;
-  bagSaveArray: BagSave[] = [];
-  constructor(private weather: WeatherForecastService, private hikingBag: HikingBagService, private parks: ParksService) { 
-   
+  bagSaveArray: BagSave[] = this.hikingBag.bagSaveArray;
+  userName: string = "";
+  activitiesArray: string [] = this.parks.activitiesArray;
+
+  constructor(private weather: WeatherForecastService, private hikingBag: HikingBagService, private parks: ParksService, private router: Router) { 
   }
 
   ngOnInit(): void {
     this.ShowForecast();
     this.GetTimeIndex();
     //this.ShowAllBagItems();
-    this.bagSaveArray = this.hikingBag.bagSaveArray;
+    this.ShowBagSavesByUserName();
+   
+  }
+
+  ShowBagSavesByUserName(): void{
+    this.hikingBag.GetBagSavesByUserName(this.hikingBag.userName).subscribe((response) =>{
+      this.bagSaveArray = response;
+      this.hikingBag.bagSaveArray = this.bagSaveArray;
+      
+    })
   }
   ShowAllBagItems(): void {
     this.hikingBag.ShowAllBagItems().subscribe((response) => {
       this.bagItem = (response)
-      console.log(this.bagItem);
       this.getRequiredBagItems();
-      console.log(this.requiredItems);
+      this.ShowBagSavesByUserName();
     })
   }
+
+  MoveToCustomItems() : void {
+    this.router.navigateByUrl(`custom-items`);
+  }
+
   ShowForecast(): void {
     this.weather.GetForecast().subscribe((response) => {
       //creating a daily forecast array
@@ -64,8 +80,6 @@ export class BagBuilderComponent implements OnInit {
     this.weather.forecastArray = this.forecastArray;
     this.hotHourCalculator();
     this.waterCalculator();
-    console.log(this.hotHourCount);
-    console.log(this.waterUnitsHigh);
     this.ShowAllBagItems();
     });
 

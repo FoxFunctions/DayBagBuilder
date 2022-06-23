@@ -1,5 +1,6 @@
 <p>Please enter your name</p>
 <input type="text" [(ngModel)]="userName">
+<br>
 <button (click)="ShowBagSavesByUserName()">Check your UserName for exisiting Items</button>
 <div *ngFor="let b of bagSaveArray">
     <p>Id: {{b.id}} | Item Name:{{b.itemName}}</p>
@@ -7,16 +8,22 @@
 
 <p>Please enter the name of the item that you would like to bring with you</p>
 <input type="text" [(ngModel)]="itemName">
-
-<!--<button *ngIf="userName !== '' || itemName !== ''"disabled>Add Item</button> -->
-<button (click)="CreateNewBagSave()">Add Item</button>
+<br>
+<button *ngIf="userName.length === 0 || itemName.length === 0 "disabled>Add Item</button>
+<button *ngIf="userName.length > 0 && itemName.length > 0" (click)="CreateNewBagSave()">Add Item</button>
 
 <p>If there are any items that you woudl like to remove from the list, please enter the ID of the item below and press the button</p>
 <input type="number" [(ngModel)]="bagsaveID"> 
+<br>
 <button (click)="DeleteBagSave(bagsaveID)">Remove Item</button>
 
 
 <p>If you would like to change the name of an item, please enter the ID of the item and the items new name</p>
+<br>
+<p>ID</p>
 <input type="number" [(ngModel)]="bagSaveUpdateId">
+<br>
+<p>Item Name</p>
 <input type="text" [(ngModel)]="bagSaveUpdateName">
+<br>
 <button (click)="UpdateBagSave(bagSaveUpdateId)">Update Item</button>
