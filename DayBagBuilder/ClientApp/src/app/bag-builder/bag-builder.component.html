@@ -28,7 +28,7 @@
 
 
 <div *ngIf="hourlyForecastDay1.length > 0">
-<h3>Hourly Forecast for {{forecastArray[0].forecast.forecastday[0].date}}</h3>
+<h3>Hourly Forecast for your hike on {{forecastArray[0].forecast.forecastday[0].date}}</h3>
 
 <div *ngFor="let r of hourlyForecastDay1; index as j">
     <span>{{r.time}}: {{r.temp_f}} °F | {{r.chance_of_rain}}% chance of rain. | {{r.chance_of_snow}}% chance of snow.</span>
@@ -57,6 +57,10 @@
 
 <div *ngFor="let b of requiredItems">
     Items: {{b.itemName}}
+</div>
+<p>You also requested that these items be displayed in your bag</p>
+<div *ngFor="let b of bagSaveArray">
+    {{b.itemName}}
 </div>
 
 <div>
