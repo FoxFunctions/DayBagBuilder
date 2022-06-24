@@ -25,6 +25,8 @@ import { MatExpansionModule} from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatFormFieldControl } from '@angular/material/form-field'; 
 import { MatInputModule } from '@angular/material/input';
+import { MatTableModule } from '@angular/material/table';
+
 
 
 @NgModule({
@@ -59,7 +61,8 @@ import { MatInputModule } from '@angular/material/input';
     MatProgressBarModule,
     MatExpansionModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatTableModule
     
   ],
   providers: [WeatherForecastService, ParksService],

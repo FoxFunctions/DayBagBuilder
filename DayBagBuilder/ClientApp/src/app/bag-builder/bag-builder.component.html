@@ -1,14 +1,26 @@
+<title>W3.CSS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<body>
+<div class="currentConditionsContainer">
+<div class="w3-container">
 
-<div *ngFor="let f of forecastArray; index as i">
-<h3>Weather Forecast for {{f.location.name}}, {{f.location.region}}</h3>
+  <div class="w3-card-4" style="width:70%">
+    <header class="w3-container w3-light-grey">
+      <h3> Current conditions in {{forecastArray[0].location.name}}, {{forecastArray[0].location.region}}</h3>
+    </header>
+    <div style="background-image: url('assets/images//isSunny.png');" class="w3-container">
+      <img src="{{forecastArray[0].current.condition.icon}}" width="100" height="auto" class="center">
+      <p class="dailyForecast">{{forecastArray[0].current.condition.text}}</p>
+      <p class="dailyForecast">{{forecastArray[0].current.temp_f}} °F</p>
+      <p class="dailyForecast"> Wind: {{forecastArray[0].current.wind_mph}} mph {{forecastArray[0].current.wind_dir}}</p>
+    </div>
+    
+  </div>
+</div>
+</div>
 
-<h4>Current Conditions</h4>
-<img src="{{f.current.condition.icon}}" width="50" height="auto">
-<span>{{f.current.condition.text}}</span>
-<p>{{f.current.temp_f}} F</p>
-<span>Wind: {{f.current.wind_mph}} mph {{f.current.wind_dir}}</span>
-
-</div> 
+</body>
 <!--<h3>Day 1 avg</h3>
 <p>UV: {{forecastArray[0].forecast.forecastday[0].day.uv}}</p>
 <p>Chance of Rain: {{forecastArray[0].forecast.forecastday[0].day.daily_chance_of_rain}}%</p>
@@ -27,75 +39,17 @@
 <p>Average Temp: {{forecastArray[0].forecast.forecastday[2].day.avgtemp_f}}°F</p>
 <p>Chance of Snow: {{forecastArray[0].forecast.forecastday[2].day.daily_chance_of_snow}}%</p> -->
 
-
-
-
-
-<div *ngIf="hourlyForecastDay1.length > 0">
+<!--<div *ngIf="hourlyForecastDay1.length > 0">
 <h3>Hourly Forecast for your hike on {{forecastArray[0].forecast.forecastday[0].date}}</h3>
 
 <div *ngFor="let r of hourlyForecastDay1; index as j">
     <span>{{r.time}}: {{r.temp_f}} °F | {{r.chance_of_rain}}% chance of rain. | {{r.chance_of_snow}}% chance of snow.</span>
     <img src="{{r.condition.icon}}" width="50" height="auto">
-</div>
+</div> -->
 
-</div>
-
-<div *ngIf="hourlyForecastDay2.length > 0">
-<h3>Hourly Forecast for {{forecastArray[0].forecast.forecastday[1].date}}</h3>
-<div *ngFor="let r of hourlyForecastDay2; index as j">
-    <span>{{r.time}}: {{r.temp_f}} °F | {{r.chance_of_rain}}% chance of rain. | {{r.chance_of_snow}}% chance of snow.</span>
-    <img src="{{r.condition.icon}}" width="50" height="auto">
-</div>
-</div>
-
-
-<div *ngIf="hourlyForecastDay3.length > 0">
-<h3>Hourly Forecast for {{forecastArray[0].forecast.forecastday[2].date}}</h3>
-<div *ngFor="let r of hourlyForecastDay3; index as j">
-    <span>{{r.time}}: {{r.temp_f}} °F | {{r.chance_of_rain}}% chance of rain. | {{r.chance_of_snow}}% chance of snow.</span>
-    <img src="{{r.condition.icon}}" width="50" height="auto">
-</div>
-</div>
-<br>
-<p *ngIf="bagSaveArray.length === 0">Based on the weather conditions for your hike, we are recommending the following items</p>
-<p *ngIf="bagSaveArray.length > 0">Based on the weather conditions for your hike, and the custom items you added, we are recommending the following items</p>
-<div *ngFor="let b of requiredItems">
-   {{b.itemName}}
-</div>
-<div>
-    
-</div>
-
-<div *ngFor="let b of bagSaveArray">
-    {{b.itemName}}
-</div>
-<br>
-<p *ngIf="totalPartySize > 0">For your party size of {{totalPartySize}} You will need between {{waterUnitsLow}} and {{waterUnitsHigh}} cups of water.</p>
-<p></p>
-<p *ngIf="activitiesArray.length > 0">We noticed that your hike is taking place inside a park The following activitives are available and you may want to bring additional items</p>
-<p *ngIf="activitiesArray.length === 0">We did not find a park in your area</p>
-
-<div *ngIf="activitiesArray.length > 0">
-    <div *ngFor="let a of activitiesArray">
-        {{a}}
-    </div>
-</div>
-<p></p>
-<p>Would you like to add custom items to your list?</p>
-<button (click)="MoveToCustomItems()">Add More items</button>
-
-
-<!--<div *ngIf="hourlyForecastDay1.length > 0">
-    <h3>Hourly Forecast for your hike on {{forecastArray[0].forecast.forecastday[0].date}}</h3>
-    
-    <div *ngFor="let r of hourlyForecastDay1; index as j">
-        <span>{{r.time}}: {{r.temp_f}} °F | {{r.chance_of_rain}}% chance of rain. | {{r.chance_of_snow}}% chance of snow.</span>
-        <img src="{{r.condition.icon}}" width="50" height="auto">
-    </div>
-    
-    </div> -->
+<!--Printing Day 1-->
 <div *ngIf="hourlyForecastDay1.length > 0">
+    <h2 class="weatherHeader">Hourly Forecast for your hike on {{forecastArray[0].forecast.forecastday[0].date}} </h2>
     <mat-accordion>
         <mat-expansion-panel hideToggle *ngFor="let r of hourlyForecastDay1; index as j">
         <mat-expansion-panel-header>
@@ -110,4 +64,111 @@
         </mat-expansion-panel>
     </mat-accordion>
 </div>
+
+<!--Printing Day 2-->
+<div *ngIf="hourlyForecastDay2.length > 0">
+    <h2 class="weatherHeader">Hourly Forecast for {{forecastArray[0].forecast.forecastday[1].date}}</h2>
+    <mat-accordion>
+        <mat-expansion-panel hideToggle *ngFor="let r of hourlyForecastDay2; index as j">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+            </mat-panel-title>
+            <mat-panel-description class="time">
+                {{r.time}} 
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <img src="{{r.condition.icon}}" width="50" height="auto">
+        <p>{{r.temp_f}} °F | {{r.chance_of_rain}}% chance of rain. | {{r.chance_of_snow}}% chance of snow.</p>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>
+
+<!--Printing Day 3-->
+<div *ngIf="hourlyForecastDay3.length > 0">
+    <h2 class="weatherHeader">Hourly Forecast for {{forecastArray[0].forecast.forecastday[2].date}}</h2>
+    <mat-accordion>
+        <mat-expansion-panel hideToggle *ngFor="let r of hourlyForecastDay3; index as j">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+            </mat-panel-title>
+            <mat-panel-description class="time">
+                {{r.time}} 
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <img src="{{r.condition.icon}}" width="50" height="auto">
+        <p>{{r.temp_f}} °F | {{r.chance_of_rain}}% chance of rain. | {{r.chance_of_snow}}% chance of snow.</p>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>
+
+<br>
+<head>
+    <style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+    
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+    </style>
+    </head>
+    <body>
+    
+
+    
+<div>
+    <table>
+      <tr>
+        <th>Item Name</th>
+      </tr>
+      <tr *ngFor="let b of requiredItems">
+        <td>{{b.itemName}}</td>
+     </tr>
+     <tr *ngFor="let b of bagSaveArray">
+         <td>{{b.itemName}}</td>
+     </tr>
+    </table>
+</div>
+<br>
+<p *ngIf="totalPartySize > 0">For your party size of {{totalPartySize}} You will need between {{waterUnitsLow}} and {{waterUnitsHigh}} cups of water.</p>
+<p></p>
+<p *ngIf="activitiesArray.length > 0">We noticed that your hike is taking place inside a park The following activitives are available and you may want to bring additional items</p>
+<p *ngIf="activitiesArray.length === 0">We did not find a park in your area</p>
+
+<div *ngIf="activitiesArray.length > 0">
+    <div *ngFor="let a of activitiesArray">
+        {{a}}
+    </div>
+</div>
+<p></p>
+<p>Would you like to add custom items to your list?</p>
+<button (click)="MoveToCustomItems()">Add More items</button>  
+
+
+
+
+<!--<table mat-table class="mat-elevation-z8">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{requiredItems[0].id}}</th>
+    </ng-container>
   
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{requiredItems[0].itemName}}
+      </th>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>-->
+
+

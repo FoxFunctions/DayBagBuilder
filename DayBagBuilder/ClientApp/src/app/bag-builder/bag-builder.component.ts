@@ -35,6 +35,10 @@ export class BagBuilderComponent implements OnInit {
   day2TimeArray: string [] = [];
   day3TimeArray: string [] = [];
   panelOpenState = false;
+  displayedColumns: string [] = ['id', 'name' ]
+
+
+ 
   
 
   constructor(private weather: WeatherForecastService, private hikingBag: HikingBagService, private parks: ParksService, private router: Router) { 
@@ -45,7 +49,6 @@ export class BagBuilderComponent implements OnInit {
     this.GetTimeIndex();
     //this.ShowAllBagItems();
     this.ShowBagSavesByUserName();
-   
   }
 
   SliceTime() : void {
