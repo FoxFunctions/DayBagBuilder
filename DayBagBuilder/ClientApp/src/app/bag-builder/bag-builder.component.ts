@@ -31,6 +31,9 @@ export class BagBuilderComponent implements OnInit {
   bagSaveArray: BagSave[] = this.hikingBag.bagSaveArray;
   userName: string = "";
   activitiesArray: string [] = this.parks.activitiesArray;
+  day1TimeArray: string [] = [];
+  day2TimeArray: string [] = [];
+  day3TimeArray: string [] = [];
 
   constructor(private weather: WeatherForecastService, private hikingBag: HikingBagService, private parks: ParksService, private router: Router) { 
   }
@@ -41,6 +44,14 @@ export class BagBuilderComponent implements OnInit {
     //this.ShowAllBagItems();
     this.ShowBagSavesByUserName();
    
+  }
+
+  SliceTime() : void {
+    for (let i = 0; i < this.forecastArray[0].forecast.forecastday[0].hour.length; i++){
+      this.forecastArray[0].forecast.forecastday[0].hour[i].time = this.forecastArray[0].forecast.forecastday[0].hour[i].time.slice(11);
+      this.forecastArray[0].forecast.forecastday[1].hour[i].time = this.forecastArray[0].forecast.forecastday[1].hour[i].time.slice(11);
+      this.forecastArray[0].forecast.forecastday[2].hour[i].time = this.forecastArray[0].forecast.forecastday[2].hour[i].time.slice(11);
+     }
   }
 
   ShowBagSavesByUserName(): void{
@@ -81,6 +92,7 @@ export class BagBuilderComponent implements OnInit {
     this.hotHourCalculator();
     this.waterCalculator();
     this.ShowAllBagItems();
+    this.SliceTime();
     });
 
   }

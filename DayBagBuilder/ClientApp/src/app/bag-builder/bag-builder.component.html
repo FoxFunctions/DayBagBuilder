@@ -1,3 +1,4 @@
+
 <div *ngFor="let f of forecastArray; index as i">
 <h3>Weather Forecast for {{f.location.name}}, {{f.location.region}}</h3>
 
@@ -25,6 +26,9 @@
 <p>Chance of Rain: {{forecastArray[0].forecast.forecastday[2].day.daily_chance_of_rain}}%</p>
 <p>Average Temp: {{forecastArray[0].forecast.forecastday[2].day.avgtemp_f}}°F</p>
 <p>Chance of Snow: {{forecastArray[0].forecast.forecastday[2].day.daily_chance_of_snow}}%</p> -->
+
+
+
 
 
 <div *ngIf="hourlyForecastDay1.length > 0">
