@@ -14,6 +14,18 @@ import { WeatherForecastService } from './weather-forecast.service';
 import { ParksService } from './parks.service';
 import { BagBuilderComponent } from './bag-builder/bag-builder.component';
 import {CustomItemsComponent} from './custom-items/custom-items.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatProgressBarModule } from '@angular/material/progress-bar'
+import { MatExpansionModule} from '@angular/material/expansion';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatFormFieldControl } from '@angular/material/form-field'; 
+import { MatInputModule } from '@angular/material/input';
+
 
 @NgModule({
   declarations: [
@@ -37,7 +49,18 @@ import {CustomItemsComponent} from './custom-items/custom-items.component';
       { path: 'landing', component: LandingComponent},
       { path: 'bag-builder', component: BagBuilderComponent},
       { path: 'custom-items', component: CustomItemsComponent}
-    ])
+    ]),
+    BrowserAnimationsModule,
+    MatSliderModule,
+    MatBadgeModule,
+    MatIconModule,
+    MatButtonModule,
+    MatMenuModule,
+    MatProgressBarModule,
+    MatExpansionModule,
+    MatFormFieldModule,
+    MatInputModule
+    
   ],
   providers: [WeatherForecastService, ParksService],
   bootstrap: [AppComponent]

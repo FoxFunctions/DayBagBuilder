@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 
 
 @Component({
-  selector: 'app-landing',
+  selector: 'app-landing', 
   templateUrl: './landing.component.html',
   styleUrls: ['./landing.component.css']
 })
@@ -69,7 +69,7 @@ export class LandingComponent implements OnInit {
     this.parksArray.push(response);
   
     for (let i = 0; i < this.parksArray[0].data.length; i++){
-      
+
       this.activitiesArray.push(this.parksArray[0].data[i].name);
     } 
     this.parksArray = [];

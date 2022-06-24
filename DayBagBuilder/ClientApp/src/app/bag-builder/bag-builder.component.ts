@@ -34,6 +34,8 @@ export class BagBuilderComponent implements OnInit {
   day1TimeArray: string [] = [];
   day2TimeArray: string [] = [];
   day3TimeArray: string [] = [];
+  panelOpenState = false;
+  
 
   constructor(private weather: WeatherForecastService, private hikingBag: HikingBagService, private parks: ParksService, private router: Router) { 
   }

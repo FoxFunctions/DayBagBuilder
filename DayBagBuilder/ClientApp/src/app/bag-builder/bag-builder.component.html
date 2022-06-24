@@ -85,3 +85,29 @@
 <p>Would you like to add custom items to your list?</p>
 <button (click)="MoveToCustomItems()">Add More items</button>
 
+
+<!--<div *ngIf="hourlyForecastDay1.length > 0">
+    <h3>Hourly Forecast for your hike on {{forecastArray[0].forecast.forecastday[0].date}}</h3>
+    
+    <div *ngFor="let r of hourlyForecastDay1; index as j">
+        <span>{{r.time}}: {{r.temp_f}} °F | {{r.chance_of_rain}}% chance of rain. | {{r.chance_of_snow}}% chance of snow.</span>
+        <img src="{{r.condition.icon}}" width="50" height="auto">
+    </div>
+    
+    </div> -->
+<div *ngIf="hourlyForecastDay1.length > 0">
+    <mat-accordion>
+        <mat-expansion-panel hideToggle *ngFor="let r of hourlyForecastDay1; index as j">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+            </mat-panel-title>
+            <mat-panel-description class="time">
+                {{r.time}} 
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <img src="{{r.condition.icon}}" width="50" height="auto">
+        <p>{{r.temp_f}} °F | {{r.chance_of_rain}}% chance of rain. | {{r.chance_of_snow}}% chance of snow.</p>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>
+  
