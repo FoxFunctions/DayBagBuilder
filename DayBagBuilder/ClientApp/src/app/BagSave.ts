@@ -1,9 +1,13 @@
 export class BagSave{
-    bagId: number;
-    itemID: number;
+    id: number;
+    userName: string;
+    itemName: string;
+    
 
-    constructor(bagId: number, itemID: number){
-        this.bagId = bagId;
-        this.itemID = itemID;
+    constructor(id: number, userName:string, itemName: string){
+        this.id = id;
+        this.userName = userName;
+        this.itemName = itemName;
+    
     }
 }

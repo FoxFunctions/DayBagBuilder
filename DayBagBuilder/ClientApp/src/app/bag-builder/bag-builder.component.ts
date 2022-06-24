@@ -6,6 +6,7 @@ import { BagItem } from '../BagItem';
 import { BagSave } from '../BagSave';
 import { HikingBagService } from '../hiking-bag.service';
 import { Forecastday } from '../WeatherForecast';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-bag-builder',
@@ -27,23 +28,53 @@ export class BagBuilderComponent implements OnInit {
   bagItem: BagItem[] = [];
   requiredItems: BagItem[] = [];
   totalPartySize: number = this.weather.totalPartySize;
-  constructor(private weather: WeatherForecastService, private hikingBag: HikingBagService, private parks: ParksService) { 
-   
+  bagSaveArray: BagSave[] = this.hikingBag.bagSaveArray;
+  userName: string = "";
+  activitiesArray: string [] = this.parks.activitiesArray;
+  day1TimeArray: string [] = [];
+  day2TimeArray: string [] = [];
+  day3TimeArray: string [] = [];
+  panelOpenState = false;
+  
+
+  constructor(private weather: WeatherForecastService, private hikingBag: HikingBagService, private parks: ParksService, private router: Router) { 
   }
 
   ngOnInit(): void {
     this.ShowForecast();
     this.GetTimeIndex();
     //this.ShowAllBagItems();
+    this.ShowBagSavesByUserName();
+   
+  }
+
+  SliceTime() : void {
+    for (let i = 0; i < this.forecastArray[0].forecast.forecastday[0].hour.length; i++){
+      this.forecastArray[0].forecast.forecastday[0].hour[i].time = this.forecastArray[0].forecast.forecastday[0].hour[i].time.slice(11);
+      this.forecastArray[0].forecast.forecastday[1].hour[i].time = this.forecastArray[0].forecast.forecastday[1].hour[i].time.slice(11);
+      this.forecastArray[0].forecast.forecastday[2].hour[i].time = this.forecastArray[0].forecast.forecastday[2].hour[i].time.slice(11);
+     }
+  }
+
+  ShowBagSavesByUserName(): void{
+    this.hikingBag.GetBagSavesByUserName(this.hikingBag.userName).subscribe((response) =>{
+      this.bagSaveArray = response;
+      this.hikingBag.bagSaveArray = this.bagSaveArray;
+      
+    })
   }
   ShowAllBagItems(): void {
     this.hikingBag.ShowAllBagItems().subscribe((response) => {
       this.bagItem = (response)
-      console.log(this.bagItem);
       this.getRequiredBagItems();
-      console.log(this.requiredItems);
+      this.ShowBagSavesByUserName();
     })
   }
+
+  MoveToCustomItems() : void {
+    this.router.navigateByUrl(`custom-items`);
+  }
+
   ShowForecast(): void {
     this.weather.GetForecast().subscribe((response) => {
       //creating a daily forecast array
@@ -62,9 +93,8 @@ export class BagBuilderComponent implements OnInit {
     this.weather.forecastArray = this.forecastArray;
     this.hotHourCalculator();
     this.waterCalculator();
-    console.log(this.hotHourCount);
-    console.log(this.waterUnitsHigh);
     this.ShowAllBagItems();
+    this.SliceTime();
     });
 
   }
@@ -99,7 +129,7 @@ export class BagBuilderComponent implements OnInit {
       this.hourlyForecastDay3.splice((this.hikeTimeStartAsIndex + this.weather.tripDuration)-48);
     }
   }
-  // accountint for all conditions with a trip beginning tomororw
+  // accounting for all conditions with a trip beginning tomororw
   if (this.weather.hikeDayStart === "tomorrow"){
     this.hourlyForecastDay1 = [];
     this.hourlyForecastDay2.splice(this.weather.tripDuration);
@@ -192,6 +222,7 @@ export class BagBuilderComponent implements OnInit {
       this.hikeTimeStartAsIndex = 23;
     }
   }
+  // function that totals the amount of hours where the temperature is above 85. We use this for recommending the appropriate amount of water for a trip
   hotHourCalculator(): void{
    if (this.weather.hikeDayStart === "today"){
      if (this.weather.tripDuration + this.hikeTimeStartAsIndex < 23){
@@ -267,11 +298,13 @@ export class BagBuilderComponent implements OnInit {
     }
   }
  }
+ // calculates the amount of water that a group or solo party would need on their hiking trip.
  waterCalculator(): void {
    this.waterUnitsHigh = (this.weather.tripDuration * 2 * this.weather.totalPartySize) + (this.hotHourCount * this.weather.totalPartySize);
    this.waterUnitsLow = this.waterUnitsHigh/2;
  }
 
+ //this series of functions are used to make bag item recomendations based on a variety of weather conditions. The conditions are daily averages and not hourly.
  isColdWeather1(): boolean {
   if(this.dailyForecast[0].day.avgtemp_f <= 46){
      return true;
@@ -378,6 +411,8 @@ isGoingToSnow3(): boolean{
     return false;
   }
 }
+
+// this function will populate the requiredItems array with the items we are recommending for a hiking trip
 getRequiredBagItems(): void{
   if(this.isGoingToSnow1()){
     if(this.weather.hikeDayStart === "today"){
@@ -478,7 +513,7 @@ getRequiredBagItems(): void{
   if(this.isHighUv1()){
     if(this.weather.hikeDayStart === "today"){
     for(let i = 0; i < this.bagItem.length; i++){
-      if(this.bagItem[i].forSnow && !this.requiredItems.includes(this.bagItem[i])){
+      if(this.bagItem[i].forSunny && !this.requiredItems.includes(this.bagItem[i])){
         this.requiredItems.push(this.bagItem[i])
       }
     }
@@ -487,14 +522,14 @@ getRequiredBagItems(): void{
   if (this.isHighUv2()){
     if(this.weather.hikeDayStart === "today" && this.hikeTimeStartAsIndex + this.weather.tripDuration > 23){
     for(let i = 0; i < this.bagItem.length; i++){
-      if(this.bagItem[i].forSnow && !this.requiredItems.includes(this.bagItem[i])){
+      if(this.bagItem[i].forSunny && !this.requiredItems.includes(this.bagItem[i])){
         this.requiredItems.push(this.bagItem[i])
       }
     }
   }
   else if (this.weather.hikeDayStart === "tomorrow" ){
     for(let i = 0; i < this.bagItem.length; i++){
-      if(this.bagItem[i].forSnow && !this.requiredItems.includes(this.bagItem[i])){
+      if(this.bagItem[i].forSunny && !this.requiredItems.includes(this.bagItem[i])){
         this.requiredItems.push(this.bagItem[i])
       }
     }
@@ -503,21 +538,21 @@ getRequiredBagItems(): void{
    if (this.isHighUv3()){
     if(this.weather.hikeDayStart === "today" && this.hikeTimeStartAsIndex + this.weather.tripDuration >47){
     for(let i = 0; i < this.bagItem.length; i++){
-      if(this.bagItem[i].forSnow && !this.requiredItems.includes(this.bagItem[i])){
+      if(this.bagItem[i].forSunny && !this.requiredItems.includes(this.bagItem[i])){
         this.requiredItems.push(this.bagItem[i])
       }
     }
   }
   if (this.weather.hikeDayStart === "tomorrow" && this.hikeTimeStartAsIndex + this.weather.tripDuration > 23){
     for(let i = 0; i < this.bagItem.length; i++){
-      if(this.bagItem[i].forSnow && !this.requiredItems.includes(this.bagItem[i])){
+      if(this.bagItem[i].forSunny && !this.requiredItems.includes(this.bagItem[i])){
         this.requiredItems.push(this.bagItem[i])
       }
     }
   }
   if(this.weather.hikeDayStart === "the-day-after"){
     for(let i = 0; i < this.bagItem.length; i++){
-      if(this.bagItem[i].forSnow && !this.requiredItems.includes(this.bagItem[i])){
+      if(this.bagItem[i].forSunny && !this.requiredItems.includes(this.bagItem[i])){
         this.requiredItems.push(this.bagItem[i])
       }
     }
@@ -526,7 +561,7 @@ getRequiredBagItems(): void{
   if(this.isHotWeather1()){
     if(this.weather.hikeDayStart === "today"){
     for(let i = 0; i < this.bagItem.length; i++){
-      if(this.bagItem[i].forSnow && !this.requiredItems.includes(this.bagItem[i])){
+      if(this.bagItem[i].forHot && !this.requiredItems.includes(this.bagItem[i])){
         this.requiredItems.push(this.bagItem[i])
       }
     }
@@ -535,7 +570,7 @@ getRequiredBagItems(): void{
   if (this.isHotWeather2()){
     if(this.weather.hikeDayStart === "today" && this.hikeTimeStartAsIndex + this.weather.tripDuration > 23){
     for(let i = 0; i < this.bagItem.length; i++){
-      if(this.bagItem[i].forSnow && !this.requiredItems.includes(this.bagItem[i])){
+      if(this.bagItem[i].forHot && !this.requiredItems.includes(this.bagItem[i])){
         this.requiredItems.push(this.bagItem[i])
       }
     }
@@ -558,14 +593,14 @@ getRequiredBagItems(): void{
   }
   if (this.weather.hikeDayStart === "tomorrow" && this.hikeTimeStartAsIndex + this.weather.tripDuration > 23){
     for(let i = 0; i < this.bagItem.length; i++){
-      if(this.bagItem[i].forSnow && !this.requiredItems.includes(this.bagItem[i])){
+      if(this.bagItem[i].forHot && !this.requiredItems.includes(this.bagItem[i])){
         this.requiredItems.push(this.bagItem[i])
       }
     }
   }
   if(this.weather.hikeDayStart === "the-day-after"){
     for(let i = 0; i < this.bagItem.length; i++){
-      if(this.bagItem[i].forSnow && !this.requiredItems.includes(this.bagItem[i])){
+      if(this.bagItem[i].forHot && !this.requiredItems.includes(this.bagItem[i])){
         this.requiredItems.push(this.bagItem[i])
       }
     }
@@ -574,7 +609,7 @@ getRequiredBagItems(): void{
   if(this.isColdWeather1()){
     if(this.weather.hikeDayStart === "today"){
     for(let i = 0; i < this.bagItem.length; i++){
-      if(this.bagItem[i].forSnow && !this.requiredItems.includes(this.bagItem[i])){
+      if(this.bagItem[i].forCold && !this.requiredItems.includes(this.bagItem[i])){
         this.requiredItems.push(this.bagItem[i])
       }
     }
@@ -583,14 +618,14 @@ getRequiredBagItems(): void{
   if (this.isColdWeather2()){
     if(this.weather.hikeDayStart === "today" && this.hikeTimeStartAsIndex + this.weather.tripDuration > 23){
     for(let i = 0; i < this.bagItem.length; i++){
-      if(this.bagItem[i].forSnow && !this.requiredItems.includes(this.bagItem[i])){
+      if(this.bagItem[i].forCold && !this.requiredItems.includes(this.bagItem[i])){
         this.requiredItems.push(this.bagItem[i])
       }
     }
   }
   else if (this.weather.hikeDayStart === "tomorrow" ){
     for(let i = 0; i < this.bagItem.length; i++){
-      if(this.bagItem[i].forSnow && !this.requiredItems.includes(this.bagItem[i])){
+      if(this.bagItem[i].forCold && !this.requiredItems.includes(this.bagItem[i])){
         this.requiredItems.push(this.bagItem[i])
       }
     }
@@ -599,28 +634,25 @@ getRequiredBagItems(): void{
    if (this.isColdWeather3()){
     if(this.weather.hikeDayStart === "today" && this.hikeTimeStartAsIndex + this.weather.tripDuration >47){
     for(let i = 0; i < this.bagItem.length; i++){
-      if(this.bagItem[i].forSnow && !this.requiredItems.includes(this.bagItem[i])){
+      if(this.bagItem[i].forCold && !this.requiredItems.includes(this.bagItem[i])){
         this.requiredItems.push(this.bagItem[i])
       }
     }
   }
   if (this.weather.hikeDayStart === "tomorrow" && this.hikeTimeStartAsIndex + this.weather.tripDuration > 23){
     for(let i = 0; i < this.bagItem.length; i++){
-      if(this.bagItem[i].forSnow && !this.requiredItems.includes(this.bagItem[i])){
+      if(this.bagItem[i].forCold && !this.requiredItems.includes(this.bagItem[i])){
         this.requiredItems.push(this.bagItem[i])
       }
     }
   }
   if(this.weather.hikeDayStart === "the-day-after"){
     for(let i = 0; i < this.bagItem.length; i++){
-      if(this.bagItem[i].forSnow && !this.requiredItems.includes(this.bagItem[i])){
+      if(this.bagItem[i].forCold && !this.requiredItems.includes(this.bagItem[i])){
         this.requiredItems.push(this.bagItem[i])
       }
     }
   }
   }
  }
-
-
 }
-

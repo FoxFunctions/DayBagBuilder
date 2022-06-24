@@ -48,19 +48,11 @@ namespace DayBagBuilder.Models
 
             modelBuilder.Entity<BagSave>(entity =>
             {
-                entity.HasKey(e => e.BagId)
-                    .HasName("PK__BagSave__9A4110885A9A967F");
-
                 entity.ToTable("BagSave");
 
-                entity.Property(e => e.BagId).HasColumnName("BagID");
+                entity.Property(e => e.ItemName).HasMaxLength(30);
 
-                entity.Property(e => e.ItemId).HasColumnName("ItemID");
-
-                entity.HasOne(d => d.Item)
-                    .WithMany(p => p.BagSaves)
-                    .HasForeignKey(d => d.ItemId)
-                    .HasConstraintName("FK__BagSave__ItemID__2A4B4B5E");
+                entity.Property(e => e.UserName).HasMaxLength(30);
             });
 
             modelBuilder.Entity<User>(entity =>

@@ -9,10 +9,9 @@ import { Parks } from './Parks';
 })
 export class ParksService {
 locationString2: string = "";
+activitiesArray: string [] = [];
   constructor(private http: HttpClient) { }
-
   ShowParkActivities(): Observable <Parks>{
     return this.http.get<Parks>("https://developer.nps.gov/api/v1/activities?q="+this.locationString2+"&api_key=kXqcWPcYb2fgVVAVO30bfMdi217VOjEgkWdL7uLV");
   }
-
 }

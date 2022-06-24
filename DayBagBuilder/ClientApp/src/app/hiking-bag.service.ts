@@ -9,7 +9,9 @@ import { User } from './User';
   providedIn: 'root'
 })
 export class HikingBagService {
-  urlRoot: String; 
+  urlRoot: String;
+  bagSaveArray: BagSave[] = []; 
+  userName: string = "";
 
 
   constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) { 
@@ -61,7 +63,13 @@ export class HikingBagService {
   }
 
   DeleteBagSave(id: number){
-    return this.http.delete<BagSave>(this.urlRoot + "user/DeleteBagSave/" + id);
+    return this.http.delete<BagSave>(this.urlRoot + "bagsave/DeleteBagSave/" + id);
+  }
+  GetBagSavesByUserName(userName: string): Observable<BagSave[]>{
+    return this.http.get<BagSave[]>(this.urlRoot + "bagsave/ShowBagsByUserName/" + userName);
+  }
+  UpdateBagSave(id: number, b: BagSave): Observable<BagSave>{
+    return this.http.post<BagSave>(this.urlRoot + "bagsave/UpdateBagSave/" + id, b);
   }
 
 }

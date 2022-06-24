@@ -1,10 +1,17 @@
+<p>Enter your name</p>
+<input type="text" [(ngModel)]="userName">
 
 <p>Enter trip Location</p>
 <input type="text" [(ngModel)]="locationString2">
-<button (click)="ShowParkActivities()">test</button>
 <p *ngIf="tripLocation !== ''">Cool, you're going to {{tripLocation}}</p>
 <p></p>
 
+<p>How many hours?</p>
+<input type="number" max="72" min="1" [(ngModel)]="tripDuration">
+
+<p>How many people?</p>
+<input type="number" min="1" [(ngModel)]="totalPartySize">
+<p></p>
 <label for="Date">Which day will your hike begin?</label>
 
 <select name="Date" id="Date" [(ngModel)]="hikeDayStart">
@@ -48,10 +55,7 @@
 <p></p>
 
 
-<p>How many hours?</p>
-<input type="number" max="72" min="1" [(ngModel)]="tripDuration">
 
 
-<p>How many people?</p>
-<input type="number" min="1" [(ngModel)]="totalPartySize">
-<button (click)="GetTripDurationAndMoveToBagBuilder()">move on</button>
+<button *ngIf="tripDuration === 0 || hikeStringStart === '' || locationString2=== '' || totalPartySize === 0"disabled>move on</button>
+<button *ngIf="tripDuration >0 && hikeStringStart !== '' && locationString2!== '' && totalPartySize >0 "(click)="GetTripDurationAndMoveToBagBuilder()">move on</button>
