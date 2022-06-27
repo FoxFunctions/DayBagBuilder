@@ -1,4 +1,4 @@
-<p>Enter your name</p>
+<!--<p>Enter your name</p>
 <input type="text" [(ngModel)]="userName">
 
 <p>Enter trip Location</p>
@@ -58,4 +58,76 @@
 
 
 <button *ngIf="tripDuration === 0 || hikeStringStart === '' || locationString2=== '' || totalPartySize === 0"disabled>move on</button>
+<button *ngIf="tripDuration >0 && hikeStringStart !== '' && locationString2!== '' && totalPartySize >0 "(click)="GetTripDurationAndMoveToBagBuilder()">move on</button> -->
+
+
+<title>W3.CSS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<body class="w3-container">
+
+
+<div class="w3-card-4" style="width:70%">
+
+<header class="w3-container w3-light-grey">
+  <h3>Hiking Trip Information</h3>
+</header>
+
+<div class="w3-container">
+  <p>Enter your name</p>
+  <input type="text" [(ngModel)]="userName"><br>
+  <p>Enter trip Location</p>
+<input type="text" [(ngModel)]="locationString2"><br>
+<p>How many hours?</p>
+<input type="number" max="72" min="1" [(ngModel)]="tripDuration">
+
+<p>How many people?</p>
+<input type="number" min="1" [(ngModel)]="totalPartySize">
+<p></p>
+<label for="Date">Which day will your hike begin?</label>
+  <select name="Date" id="Date" [(ngModel)]="hikeDayStart">
+    <option value="today">Today</option>
+    <option value="tomorrow">Tomorrow</option>
+    <option value="the-day-after">The day after tomorrow</option>
+  </select>
+  
+  <p></p>
+  
+  <label for="HikeStart">What time will your hike begin?</label>
+  
+  <select name="HikeStart" id="HikeStart" [(ngModel)]="hikeStringStart">
+    <option value="00:00">12:00 AM</option>
+    <option value="01:00">1:00 AM</option>
+    <option value="02:00">2:00 AM</option>
+    <option value="03:00">3:00 AM</option>
+    <option value="04:00">4:00 AM</option>
+    <option value="05:00">5:00 AM</option>
+    <option value="06:00">6:00 AM</option>
+    <option value="07:00">7:00 AM</option>
+    <option value="08:00">8:00 AM</option>
+    <option value="09:00">9:00 AM</option>
+    <option value="10:00">10:00 AM</option>
+    <option value="11:00">11:00 AM</option>
+    <option value="12:00">12:00 PM</option>
+    <option value="13:00">1:00 PM</option>
+    <option value="14:00">2:00 PM</option>
+    <option value="15:00">3:00 PM</option>
+    <option value="16:00">4:00 PM</option>
+    <option value="17:00">5:00 PM</option>
+    <option value="18:00">6:00 PM</option>
+    <option value="19:00">7:00 PM</option>
+    <option value="20:00">8:00 PM</option>
+    <option value="21:00">9:00 PM</option>
+    <option value="22:00">10:00 PM</option>
+    <option value="23:00">11:00 PM</option>
+  </select> 
+
+
+
+</div>
+
+<button *ngIf="tripDuration === 0 || hikeStringStart === '' || locationString2=== '' || totalPartySize === 0"disabled>move on</button>
 <button *ngIf="tripDuration >0 && hikeStringStart !== '' && locationString2!== '' && totalPartySize >0 "(click)="GetTripDurationAndMoveToBagBuilder()">move on</button>
+<br>
+<p></p>
+</div>

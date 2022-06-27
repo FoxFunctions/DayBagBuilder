@@ -26,6 +26,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatFormFieldControl } from '@angular/material/form-field'; 
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
+import { MatOptionModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
 
 
 
@@ -38,7 +40,8 @@ import { MatTableModule } from '@angular/material/table';
     FetchDataComponent,
     LandingComponent,
     BagBuilderComponent,
-    CustomItemsComponent
+    CustomItemsComponent,
+    
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -62,7 +65,9 @@ import { MatTableModule } from '@angular/material/table';
     MatExpansionModule,
     MatFormFieldModule,
     MatInputModule,
-    MatTableModule
+    MatTableModule,
+    MatOptionModule,
+    MatSelectModule
     
   ],
   providers: [WeatherForecastService, ParksService],

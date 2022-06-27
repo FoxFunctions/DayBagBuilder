@@ -82,7 +82,7 @@
         </mat-expansion-panel>
     </mat-accordion>
 </div>
-
+<p></p>
 <!--Printing Day 3-->
 <div *ngIf="hourlyForecastDay3.length > 0">
     <h2 class="weatherHeader">Hourly Forecast for {{forecastArray[0].forecast.forecastday[2].date}}</h2>
@@ -121,15 +121,15 @@
     }
     </style>
     </head>
-    <body>
-    
-
-    
+    <body>  
 <div>
     <table>
       <tr>
         <th>Item Name</th>
       </tr>
+      <tr>
+        <td>Water: Between {{waterUnitsLow}} and {{waterUnitsHigh}} cups for your party size of {{totalPartySize}} </td>
+     </tr>
       <tr *ngFor="let b of requiredItems">
         <td>{{b.itemName}}</td>
      </tr>
@@ -139,36 +139,18 @@
     </table>
 </div>
 <br>
-<p *ngIf="totalPartySize > 0">For your party size of {{totalPartySize}} You will need between {{waterUnitsLow}} and {{waterUnitsHigh}} cups of water.</p>
 <p></p>
-<p *ngIf="activitiesArray.length > 0">We noticed that your hike is taking place inside a park The following activitives are available and you may want to bring additional items</p>
+<p *ngIf="activitiesArray.length > 0">We noticed that your hike is taking place near a park The following activitives are available and you may want to bring additional items</p>
 <p *ngIf="activitiesArray.length === 0">We did not find a park in your area</p>
 
 <div *ngIf="activitiesArray.length > 0">
     <div *ngFor="let a of activitiesArray">
-        {{a}}
+    <ul>
+        <li>{{a}}</li>
+    </ul>
     </div>
 </div>
 <p></p>
 <p>Would you like to add custom items to your list?</p>
 <button (click)="MoveToCustomItems()">Add More items</button>  
-
-
-
-
-<!--<table mat-table class="mat-elevation-z8">
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{requiredItems[0].id}}</th>
-    </ng-container>
-  
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>
-        {{requiredItems[0].itemName}}
-      </th>
-    </ng-container>
-  
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-  </table>-->
-
 
