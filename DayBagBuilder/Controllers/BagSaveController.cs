@@ -45,6 +45,7 @@ namespace DayBagBuilder.Controllers
             BagSave b = hb.BagSaves.Find(id);
             b.UserName = updatedBagSave.UserName;
             b.ItemName = updatedBagSave.ItemName;
+            b.Itemweight = updatedBagSave.Itemweight;
 
             hb.BagSaves.Update(b);
             hb.SaveChanges();

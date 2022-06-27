@@ -126,17 +126,22 @@
     <table>
       <tr>
         <th>Item Name</th>
+        <th>Item Weight (ounces)</th>
       </tr>
       <tr>
-        <td>Water: Between {{waterUnitsLow}} and {{waterUnitsHigh}} cups for your party size of {{totalPartySize}} </td>
+        <td>Water: Between {{waterUnitsLow}} and {{waterUnitsHigh}} cups hourly for your party size of {{totalPartySize}} </td>
+        <td>Range: {{waterWeightLow}}-{{waterWeightHigh}}</td>
      </tr>
       <tr *ngFor="let b of requiredItems">
         <td>{{b.itemName}}</td>
+        <td>{{b.itemweight}}</td>
      </tr>
      <tr *ngFor="let b of bagSaveArray">
          <td>{{b.itemName}}</td>
+         <td>{{b.itemweight}}</td>
      </tr>
     </table>
+    <p>Pack Total Weight Range: {{totalWeightLow}}-{{totalWeightHigh}} pounds.</p>
 </div>
 <br>
 <p></p>

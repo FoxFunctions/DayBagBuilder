@@ -35,7 +35,13 @@ export class BagBuilderComponent implements OnInit {
   day2TimeArray: string [] = [];
   day3TimeArray: string [] = [];
   panelOpenState = false;
-  displayedColumns: string [] = ['id', 'name' ]
+  totalItemWeight: number = 0;
+  waterWeightLow: number = 0;
+  waterWeightHigh: number = 0;
+  totalWeightLow: number = 0;
+  totalWeightHigh: number = 0;
+  filteredBagsave: BagSave [] = [];
+  bagSaveWeight: number = 0;
 
 
  
@@ -657,5 +663,19 @@ getRequiredBagItems(): void{
     }
   }
   }
+  this.filteredBagsave = this.hikingBag.bagSaveArray.filter( x => x.userName == this.hikingBag.userName);
+  console.log(this.filteredBagsave);
+
+  for (let i = 0; i < this.filteredBagsave.length; i++){
+    this.bagSaveWeight += this.filteredBagsave[i].itemweight;
+  }
+
+  for (let i = 0; i < this.requiredItems.length; i++ ){
+    this.totalItemWeight += this.requiredItems[i].itemweight;
+  }
+  this.waterWeightLow = this.waterUnitsLow * 8;
+  this.waterWeightHigh = this.waterUnitsHigh * 8;
+  this.totalWeightLow = Math.round((this.totalItemWeight + this.waterWeightLow + this.bagSaveWeight)  / 16);
+  this.totalWeightHigh = Math.round((this.totalItemWeight + this.waterWeightHigh + this.bagSaveWeight) / 16);
  }
 }

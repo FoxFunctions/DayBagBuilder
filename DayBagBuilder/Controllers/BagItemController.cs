@@ -55,6 +55,7 @@ namespace DayBagBuilder.Controllers
             b.ForRain = updatedBagItem.ForRain;
             b.ForSnow = updatedBagItem.ForSnow;
             b.ForSunny = updatedBagItem.ForSunny;
+            b.Itemweight = updatedBagItem.Itemweight;
 
             hb.BagItems.Update(b);
             hb.SaveChanges();

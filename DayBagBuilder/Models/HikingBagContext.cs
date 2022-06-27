@@ -44,6 +44,8 @@ namespace DayBagBuilder.Models
                 entity.Property(e => e.ForSunny).HasColumnName("forSunny");
 
                 entity.Property(e => e.ItemName).HasMaxLength(50);
+
+                entity.Property(e => e.Itemweight).HasColumnName("itemweight");
             });
 
             modelBuilder.Entity<BagSave>(entity =>
@@ -51,6 +53,8 @@ namespace DayBagBuilder.Models
                 entity.ToTable("BagSave");
 
                 entity.Property(e => e.ItemName).HasMaxLength(30);
+
+                entity.Property(e => e.Itemweight).HasColumnName("itemweight");
 
                 entity.Property(e => e.UserName).HasMaxLength(30);
             });

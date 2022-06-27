@@ -1,3 +1,4 @@
+
 <title>W3.CSS</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -21,10 +22,12 @@
 <p>Please enter the name of the item that you would like to bring with you</p>
 <input type="text" [(ngModel)]="itemName">
 <br>
-<button *ngIf="userName.length === 0 || itemName.length === 0 "disabled>Add Item</button>
-<button *ngIf="userName.length > 0 && itemName.length > 0" (click)="CreateNewBagSave()">Add Item</button>
+<p>How much does this item weigh (in ounces)</p>
+<input type="number" [(ngModel)]="itemWeight"><br>
+<button *ngIf="userName.length === 0 || itemName.length === 0 || itemWeight === 0 "disabled>Add Item</button>
+<button *ngIf="userName.length > 0 && itemName.length > 0 && itemWeight > 0" (click)="CreateNewBagSave()">Add Item</button>
 <hr>
-<p>If there are any items that you woudl like to remove from the list, please enter the ID of the item below and press the button</p>
+<p>If there are any items that you would like to remove from the list, please enter the ID of the item below and press the button</p>
 <input type="number" [(ngModel)]="bagsaveID"> 
 <br>
 <button (click)="DeleteBagSave(bagsaveID)">Remove Item</button>
@@ -37,6 +40,8 @@
 <p>Item Name</p>
 <input type="text" [(ngModel)]="bagSaveUpdateName">
 <br>
+<p>Item Weight (in ounces)</p>
+<input type="number" [(ngModel)]="bagSaveUpdatedWeight"><br>
 <button (click)="UpdateBagSave(bagSaveUpdateId)">Update Item</button>
 <hr>
 <button (click)="MoveToBagBuilder()">Return to your bag</button>
