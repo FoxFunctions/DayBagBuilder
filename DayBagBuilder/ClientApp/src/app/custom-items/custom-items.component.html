@@ -1,23 +1,34 @@
-<p>Please enter your name</p>
-<input type="text" [(ngModel)]="userName">
-<br>
-<button (click)="ShowBagSavesByUserName()">Check your UserName for exisiting Items</button>
-<div *ngFor="let b of bagSaveArray">
-    <p>Id: {{b.id}} | Item Name:{{b.itemName}}</p>
-</div>
+<title>W3.CSS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<body class="w3-container">
 
+<div class="w3-card-4" style="width:70%">
+
+<header class="w3-container w3-light-grey">
+  <h3>Create New Bag Item</h3>
+</header>
+
+<div class="w3-container">
+    <p>Please enter your name</p>
+    <input type="text" [(ngModel)]="userName"><br>
+
+    <button (click)="ShowBagSavesByUserName()">Check your UserName for exisiting Items</button><br>
+    <div *ngFor="let b of bagSaveArray">
+        <p>Id: {{b.id}} | Item Name:{{b.itemName}}</p>
+    </div>    
+  <hr>
 <p>Please enter the name of the item that you would like to bring with you</p>
 <input type="text" [(ngModel)]="itemName">
 <br>
 <button *ngIf="userName.length === 0 || itemName.length === 0 "disabled>Add Item</button>
 <button *ngIf="userName.length > 0 && itemName.length > 0" (click)="CreateNewBagSave()">Add Item</button>
-
+<hr>
 <p>If there are any items that you woudl like to remove from the list, please enter the ID of the item below and press the button</p>
 <input type="number" [(ngModel)]="bagsaveID"> 
 <br>
 <button (click)="DeleteBagSave(bagsaveID)">Remove Item</button>
-
-
+<hr>
 <p>If you would like to change the name of an item, please enter the ID of the item and the items new name</p>
 <br>
 <p>ID</p>
@@ -27,3 +38,7 @@
 <input type="text" [(ngModel)]="bagSaveUpdateName">
 <br>
 <button (click)="UpdateBagSave(bagSaveUpdateId)">Update Item</button>
+<hr>
+<button (click)="MoveToBagBuilder()">Return to your bag</button>
+
+</div>

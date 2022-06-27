@@ -24,6 +24,10 @@ export class CustomItemsComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  MoveToBagBuilder() : void {
+    this.router.navigateByUrl(`bag-builder`);
+  }
   ShowBagSavesByUserName(): void{
     this.hikingBag.GetBagSavesByUserName(this.userName).subscribe((response) =>{
       this.bagSaveArray = response;
