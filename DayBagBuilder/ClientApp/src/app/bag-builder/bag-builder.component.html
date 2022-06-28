@@ -129,8 +129,11 @@
         <th>Item Weight (ounces)</th>
       </tr>
       <tr>
-        <td>Water: Between {{waterUnitsLow}} and {{waterUnitsHigh}} cups hourly for your party size of {{totalPartySize}} </td>
+        <td>Water: Between {{waterUnitsLow}} and {{waterUnitsHigh}} cups hourly per person </td>
         <td>Range: {{waterWeightLow}}-{{waterWeightHigh}}</td>
+      </tr>
+      <tr>
+        <td> {{caloriesIntake}} Calories per person</td>
      </tr>
       <tr *ngFor="let b of requiredItems">
         <td>{{b.itemName}}</td>

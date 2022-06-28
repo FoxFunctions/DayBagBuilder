@@ -42,6 +42,7 @@ export class BagBuilderComponent implements OnInit {
   totalWeightHigh: number = 0;
   filteredBagsave: BagSave [] = [];
   bagSaveWeight: number = 0;
+  caloriesIntake: number = 0;
 
 
  
@@ -104,6 +105,7 @@ export class BagBuilderComponent implements OnInit {
     this.waterCalculator();
     this.ShowAllBagItems();
     this.SliceTime();
+    // this.caloriesCalculator();
     });
 
   }
@@ -309,10 +311,12 @@ export class BagBuilderComponent implements OnInit {
  }
  // calculates the amount of water that a group or solo party would need on their hiking trip.
  waterCalculator(): void {
-   this.waterUnitsHigh = (this.weather.tripDuration * 2 * this.weather.totalPartySize) + (this.hotHourCount * this.weather.totalPartySize);
-   this.waterUnitsLow = this.waterUnitsHigh/2;
- }
-
+  this.waterUnitsHigh = (this.weather.tripDuration - this.hotHourCount) * 2  + this.hotHourCount * 3;
+  this.waterUnitsLow = this.waterUnitsHigh/2;
+}
+caloriesCalculator(): void{
+  this.caloriesIntake = (this.totalWeightHigh * 2.5) * this.weather.tripDuration + 3000;
+}
  //this series of functions are used to make bag item recomendations based on a variety of weather conditions. The conditions are daily averages and not hourly.
  isColdWeather1(): boolean {
   if(this.dailyForecast[0].day.avgtemp_f <= 46){
@@ -677,5 +681,6 @@ getRequiredBagItems(): void{
   this.waterWeightHigh = this.waterUnitsHigh * 8;
   this.totalWeightLow = Math.round((this.totalItemWeight + this.waterWeightLow + this.bagSaveWeight)  / 16);
   this.totalWeightHigh = Math.round((this.totalItemWeight + this.waterWeightHigh + this.bagSaveWeight) / 16);
+  this.caloriesIntake = (this.totalWeightHigh * 2.5) * this.weather.tripDuration + 3000;
  }
 }
