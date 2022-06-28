@@ -6,6 +6,7 @@ import { BagItem } from '../BagItem';
 import { BagSave } from '../BagSave';
 import { HikingBagService } from '../hiking-bag.service';
 import { Forecastday } from '../WeatherForecast';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-bag-builder',
@@ -27,25 +28,62 @@ export class BagBuilderComponent implements OnInit {
   bagItem: BagItem[] = [];
   requiredItems: BagItem[] = [];
   totalPartySize: number = this.weather.totalPartySize;
-  bagSaveArray: BagSave[] = [];
-  constructor(private weather: WeatherForecastService, private hikingBag: HikingBagService, private parks: ParksService) { 
-   
+  bagSaveArray: BagSave[] = this.hikingBag.bagSaveArray;
+  userName: string = "";
+  activitiesArray: string [] = this.parks.activitiesArray;
+  day1TimeArray: string [] = [];
+  day2TimeArray: string [] = [];
+  day3TimeArray: string [] = [];
+  panelOpenState = false;
+  totalItemWeight: number = 0;
+  waterWeightLow: number = 0;
+  waterWeightHigh: number = 0;
+  totalWeightLow: number = 0;
+  totalWeightHigh: number = 0;
+  filteredBagsave: BagSave [] = [];
+  bagSaveWeight: number = 0;
+
+
+ 
+  
+
+  constructor(private weather: WeatherForecastService, private hikingBag: HikingBagService, private parks: ParksService, private router: Router) { 
   }
 
   ngOnInit(): void {
     this.ShowForecast();
     this.GetTimeIndex();
     //this.ShowAllBagItems();
-    this.bagSaveArray = this.hikingBag.bagSaveArray;
+    this.ShowBagSavesByUserName();
+  }
+
+  SliceTime() : void {
+    for (let i = 0; i < this.forecastArray[0].forecast.forecastday[0].hour.length; i++){
+      this.forecastArray[0].forecast.forecastday[0].hour[i].time = this.forecastArray[0].forecast.forecastday[0].hour[i].time.slice(11);
+      this.forecastArray[0].forecast.forecastday[1].hour[i].time = this.forecastArray[0].forecast.forecastday[1].hour[i].time.slice(11);
+      this.forecastArray[0].forecast.forecastday[2].hour[i].time = this.forecastArray[0].forecast.forecastday[2].hour[i].time.slice(11);
+     }
+  }
+
+  ShowBagSavesByUserName(): void{
+    this.hikingBag.GetBagSavesByUserName(this.hikingBag.userName).subscribe((response) =>{
+      this.bagSaveArray = response;
+      this.hikingBag.bagSaveArray = this.bagSaveArray;
+      
+    })
   }
   ShowAllBagItems(): void {
     this.hikingBag.ShowAllBagItems().subscribe((response) => {
       this.bagItem = (response)
-      console.log(this.bagItem);
       this.getRequiredBagItems();
-      console.log(this.requiredItems);
+      this.ShowBagSavesByUserName();
     })
   }
+
+  MoveToCustomItems() : void {
+    this.router.navigateByUrl(`custom-items`);
+  }
+
   ShowForecast(): void {
     this.weather.GetForecast().subscribe((response) => {
       //creating a daily forecast array
@@ -64,9 +102,8 @@ export class BagBuilderComponent implements OnInit {
     this.weather.forecastArray = this.forecastArray;
     this.hotHourCalculator();
     this.waterCalculator();
-    console.log(this.hotHourCount);
-    console.log(this.waterUnitsHigh);
     this.ShowAllBagItems();
+    this.SliceTime();
     });
 
   }
@@ -626,5 +663,19 @@ getRequiredBagItems(): void{
     }
   }
   }
+  this.filteredBagsave = this.hikingBag.bagSaveArray.filter( x => x.userName == this.hikingBag.userName);
+  console.log(this.filteredBagsave);
+
+  for (let i = 0; i < this.filteredBagsave.length; i++){
+    this.bagSaveWeight += this.filteredBagsave[i].itemweight;
+  }
+
+  for (let i = 0; i < this.requiredItems.length; i++ ){
+    this.totalItemWeight += this.requiredItems[i].itemweight;
+  }
+  this.waterWeightLow = this.waterUnitsLow * 8;
+  this.waterWeightHigh = this.waterUnitsHigh * 8;
+  this.totalWeightLow = Math.round((this.totalItemWeight + this.waterWeightLow + this.bagSaveWeight)  / 16);
+  this.totalWeightHigh = Math.round((this.totalItemWeight + this.waterWeightHigh + this.bagSaveWeight) / 16);
  }
 }

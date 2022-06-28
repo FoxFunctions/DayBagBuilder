@@ -15,24 +15,31 @@ export class CustomItemsComponent implements OnInit {
   bagSaveArray : BagSave[] = [];
   userName: string = "";
   itemName: string = "";
+  itemWeight: number = 0;
   bagsaveID: number = 0;
   bagSaveUpdateId: number = 0;
   bagSaveUpdateName: string = "";
+  bagSaveUpdatedWeight: number = 0;
 
 
   constructor(private weather: WeatherForecastService, private hikingBag: HikingBagService, private parks: ParksService, private router: Router) { }
 
   ngOnInit(): void {
   }
+
+  MoveToBagBuilder() : void {
+    this.router.navigateByUrl(`bag-builder`);
+  }
   ShowBagSavesByUserName(): void{
     this.hikingBag.GetBagSavesByUserName(this.userName).subscribe((response) =>{
       this.bagSaveArray = response;
       this.hikingBag.bagSaveArray = this.bagSaveArray;
+      this.hikingBag.userName = this.userName;
       console.log(this.bagSaveArray);
     })
   }
   CreateNewBagSave(): void {
-    let bagSavePlaceHolder: BagSave = new BagSave (undefined!,this.userName,this.itemName);
+    let bagSavePlaceHolder: BagSave = new BagSave (undefined!,this.userName,this.itemName, this.itemWeight);
     this.hikingBag.CreateBagSave(bagSavePlaceHolder).subscribe();
     console.log(this.itemName);
   }
@@ -40,7 +47,7 @@ export class CustomItemsComponent implements OnInit {
     this.hikingBag.DeleteBagSave(id).subscribe();
   }
   UpdateBagSave(id: number): void{
-    let updatedBagSave = new BagSave(undefined!, this.userName, this.bagSaveUpdateName)
+    let updatedBagSave = new BagSave(undefined!, this.userName, this.bagSaveUpdateName, this.bagSaveUpdatedWeight)
     
     this.hikingBag.UpdateBagSave(id, updatedBagSave).subscribe();
   }

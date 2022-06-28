@@ -8,5 +8,6 @@ namespace DayBagBuilder.Models
         public int Id { get; set; }
         public string? UserName { get; set; }
         public string? ItemName { get; set; }
+        public int? Itemweight { get; set; }
     }
 }
