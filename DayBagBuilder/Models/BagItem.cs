@@ -12,5 +12,6 @@ namespace DayBagBuilder.Models
         public bool? ForCold { get; set; }
         public bool? ForRain { get; set; }
         public bool? ForSnow { get; set; }
+        public int? Itemweight { get; set; }
     }
 }

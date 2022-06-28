@@ -6,8 +6,9 @@ export class BagItem{
     forCold: boolean;
     forRain: boolean;
     forSnow: boolean;
+    itemweight: number;
 
-    constructor(id: number, itemName: string, forSunny: boolean, forHot: boolean, forCold: boolean, forRain: boolean, forSnow: boolean){
+    constructor(id: number, itemName: string, forSunny: boolean, forHot: boolean, forCold: boolean, forRain: boolean, forSnow: boolean, itemweight: number){
         this.id = id;
         this.itemName = itemName;
         this.forSunny = forSunny;
@@ -15,5 +16,6 @@ export class BagItem{
         this.forCold = forCold;
         this.forRain = forRain;
         this.forSnow = forSnow;
+        this.itemweight = itemweight;
     }
 }

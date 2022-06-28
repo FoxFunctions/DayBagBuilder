@@ -25,6 +25,10 @@ import { MatExpansionModule} from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatFormFieldControl } from '@angular/material/form-field'; 
 import { MatInputModule } from '@angular/material/input';
+import { MatTableModule } from '@angular/material/table';
+import { MatOptionModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
+
 
 
 @NgModule({
@@ -36,14 +40,15 @@ import { MatInputModule } from '@angular/material/input';
     FetchDataComponent,
     LandingComponent,
     BagBuilderComponent,
-    CustomItemsComponent
+    CustomItemsComponent,
+    
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: '', component: LandingComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'landing', component: LandingComponent},
@@ -59,7 +64,10 @@ import { MatInputModule } from '@angular/material/input';
     MatProgressBarModule,
     MatExpansionModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatTableModule,
+    MatOptionModule,
+    MatSelectModule
     
   ],
   providers: [WeatherForecastService, ParksService],
