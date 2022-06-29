@@ -14,7 +14,7 @@
     <p>Please enter your name</p>
     <input type="text" [(ngModel)]="userName"><br>
 
-    <button (click)="ShowBagSavesByUserName()">Check your UserName for exisiting Items</button><br>
+    <p></p><button (click)="ShowBagSavesByUserName()">Check your UserName for exisiting Items</button><br>
     <div *ngFor="let b of bagSaveArray">
         <p>Id: {{b.id}} | Item Name:{{b.itemName}}</p>
     </div>    
@@ -45,7 +45,10 @@
 <input type="number" [(ngModel)]="bagSaveUpdatedWeight" min="1"><br>
 <button *ngIf="userName.length === 0 || bagSaveUpdateId === 0 || bagSaveUpdatedWeight === 0 || bagSaveUpdateName.length === 0" disabled>Update Item</button>
 <button *ngIf="userName.length > 0 && bagSaveUpdateId > 0 && bagSaveUpdatedWeight > 0 && bagSaveUpdateName.length > 0" (click)="UpdateBagSave(bagSaveUpdateId)">Update Item</button>
+
 <hr>
 <button (click)="MoveToBagBuilder()">Return to your bag</button>
 
+
 </div>
+<br>

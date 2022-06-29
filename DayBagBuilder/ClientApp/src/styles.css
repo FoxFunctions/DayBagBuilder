@@ -2,6 +2,7 @@
 
 /* Provide sufficient contrast against white background */
 @import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
+
 a {
   color: #0366d6;
 }
@@ -17,6 +18,14 @@ code {
 }
 
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
 
+body {
+  margin: 0;
+  font-family: Roboto,
+    "Helvetica Neue", sans-serif;
+ background-color: #f5f4f4;
+}
