@@ -12,7 +12,7 @@ namespace DayBagBuilder.Controllers
     [ApiController]
     [Route("[controller]")]
     public class BagItemController : ControllerBase
-   {
+    {
         HikingBagContext hb = new HikingBagContext();
 
         [HttpGet("ShowAllBagItems")]
@@ -62,8 +62,6 @@ namespace DayBagBuilder.Controllers
 
             return $"Bag Item at ID {b.Id} has been updated";
         }
-   }
-
-
+    }
 }
 

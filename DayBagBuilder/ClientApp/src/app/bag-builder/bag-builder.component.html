@@ -21,34 +21,10 @@
 </div>
 
 </body>
-<!--<h3>Day 1 avg</h3>
-<p>UV: {{forecastArray[0].forecast.forecastday[0].day.uv}}</p>
-<p>Chance of Rain: {{forecastArray[0].forecast.forecastday[0].day.daily_chance_of_rain}}%</p>
-<p>Average Temp: {{forecastArray[0].forecast.forecastday[0].day.avgtemp_f}}°F</p>
-<p>Chance of Snow: {{forecastArray[0].forecast.forecastday[0].day.daily_chance_of_snow}}%</p>
-
-<h3>Day 2 avg</h3>
-<p>UV: {{forecastArray[0].forecast.forecastday[1].day.uv}}</p>
-<p>Chance of Rain: {{forecastArray[0].forecast.forecastday[1].day.daily_chance_of_rain}}%</p>
-<p>Average Temp: {{forecastArray[0].forecast.forecastday[1].day.avgtemp_f}}°F</p>
-<p>Chance of Snow: {{forecastArray[0].forecast.forecastday[1].day.daily_chance_of_snow}}%</p>
-
-<h3>Day 3 avg</h3>
-<p>UV: {{forecastArray[0].forecast.forecastday[2].day.uv}}</p>
-<p>Chance of Rain: {{forecastArray[0].forecast.forecastday[2].day.daily_chance_of_rain}}%</p>
-<p>Average Temp: {{forecastArray[0].forecast.forecastday[2].day.avgtemp_f}}°F</p>
-<p>Chance of Snow: {{forecastArray[0].forecast.forecastday[2].day.daily_chance_of_snow}}%</p> -->
-
-<!--<div *ngIf="hourlyForecastDay1.length > 0">
-<h3>Hourly Forecast for your hike on {{forecastArray[0].forecast.forecastday[0].date}}</h3>
-
-<div *ngFor="let r of hourlyForecastDay1; index as j">
-    <span>{{r.time}}: {{r.temp_f}} °F | {{r.chance_of_rain}}% chance of rain. | {{r.chance_of_snow}}% chance of snow.</span>
-    <img src="{{r.condition.icon}}" width="50" height="auto">
-</div> -->
 
 <!--Printing Day 1-->
-<div *ngIf="hourlyForecastDay1.length > 0">
+
+<div *ngIf="hourlyForecastDay1.length > 0" class="forecastExpansion">
     <h2 class="weatherHeader">Hourly Forecast for your hike on {{forecastArray[0].forecast.forecastday[0].date}} </h2>
     <mat-accordion>
         <mat-expansion-panel hideToggle *ngFor="let r of hourlyForecastDay1; index as j">
@@ -59,8 +35,10 @@
                 {{r.time}} 
             </mat-panel-description>
         </mat-expansion-panel-header>
+        <div class="hourlyForecastExpansion">
         <img src="{{r.condition.icon}}" width="50" height="auto">
         <p>{{r.temp_f}} °F | {{r.chance_of_rain}}% chance of rain. | {{r.chance_of_snow}}% chance of snow.</p>
+        </div>
         </mat-expansion-panel>
     </mat-accordion>
 </div>
@@ -77,8 +55,10 @@
                 {{r.time}} 
             </mat-panel-description>
         </mat-expansion-panel-header>
+        <div class="hourlyForecastExpansion">
         <img src="{{r.condition.icon}}" width="50" height="auto">
         <p>{{r.temp_f}} °F | {{r.chance_of_rain}}% chance of rain. | {{r.chance_of_snow}}% chance of snow.</p>
+        </div>
         </mat-expansion-panel>
     </mat-accordion>
 </div>
@@ -95,8 +75,10 @@
                 {{r.time}} 
             </mat-panel-description>
         </mat-expansion-panel-header>
+        <div class="hourlyForecastExpansion">
         <img src="{{r.condition.icon}}" width="50" height="auto">
         <p>{{r.temp_f}} °F | {{r.chance_of_rain}}% chance of rain. | {{r.chance_of_snow}}% chance of snow.</p>
+        </div>
         </mat-expansion-panel>
     </mat-accordion>
 </div>
