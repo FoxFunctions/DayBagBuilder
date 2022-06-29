@@ -23,26 +23,28 @@
 <input type="text" [(ngModel)]="itemName">
 <br>
 <p>How much does this item weigh (in ounces)</p>
-<input type="number" [(ngModel)]="itemWeight"><br>
+<input type="number" [(ngModel)]="itemWeight" min="1"><br>
 <button *ngIf="userName.length === 0 || itemName.length === 0 || itemWeight === 0 "disabled>Add Item</button>
 <button *ngIf="userName.length > 0 && itemName.length > 0 && itemWeight > 0" (click)="CreateNewBagSave()">Add Item</button>
 <hr>
 <p>If there are any items that you would like to remove from the list, please enter the ID of the item below and press the button</p>
-<input type="number" [(ngModel)]="bagsaveID"> 
+<input type="number" [(ngModel)]="bagsaveID" min="1"> 
 <br>
-<button (click)="DeleteBagSave(bagsaveID)">Remove Item</button>
+<button *ngIf="userName.length === 0 || bagsaveID === 0" disabled>Remove Item</button>
+<button *ngIf="userName.length > 0 && bagsaveID > 0" (click)="DeleteBagSave(bagsaveID)">Remove Item</button>
 <hr>
 <p>If you would like to change the name of an item, please enter the ID of the item and the items new name</p>
 <br>
 <p>ID</p>
-<input type="number" [(ngModel)]="bagSaveUpdateId">
+<input type="number" [(ngModel)]="bagSaveUpdateId" min="1">
 <br>
 <p>Item Name</p>
 <input type="text" [(ngModel)]="bagSaveUpdateName">
 <br>
 <p>Item Weight (in ounces)</p>
-<input type="number" [(ngModel)]="bagSaveUpdatedWeight"><br>
-<button (click)="UpdateBagSave(bagSaveUpdateId)">Update Item</button>
+<input type="number" [(ngModel)]="bagSaveUpdatedWeight" min="1"><br>
+<button *ngIf="userName.length === 0 || bagSaveUpdateId === 0 || bagSaveUpdatedWeight === 0 || bagSaveUpdateName.length === 0" disabled>Update Item</button>
+<button *ngIf="userName.length > 0 && bagSaveUpdateId > 0 && bagSaveUpdatedWeight > 0 && bagSaveUpdateName.length > 0" (click)="UpdateBagSave(bagSaveUpdateId)">Update Item</button>
 <hr>
 <button (click)="MoveToBagBuilder()">Return to your bag</button>
 
