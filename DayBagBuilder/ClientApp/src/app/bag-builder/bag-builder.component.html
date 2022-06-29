@@ -148,8 +148,10 @@
 </div>
 <br>
 <p></p>
-<p *ngIf="activitiesArray.length > 0">We noticed that your hike is taking place near a park The following activitives are available and you may want to bring additional items</p>
-<p *ngIf="activitiesArray.length === 0">We did not find a park in your area</p>
+
+<p *ngIf="activitiesArray.length > 0">We noticed that your hike is taking place near a national park. The following activitives are available, you may want to bring additional items.</p>
+<p *ngIf="activitiesArray.length === 0">Sorry, We did not find a national park in your area!</p>
+<br>
 
 <div *ngIf="activitiesArray.length > 0">
     <div *ngFor="let a of activitiesArray">
@@ -161,4 +163,7 @@
 <p></p>
 <p>Would you like to add custom items to your list?</p>
 <button (click)="MoveToCustomItems()">Add More items</button>  
+<div>
+  <br>
+</div>
 

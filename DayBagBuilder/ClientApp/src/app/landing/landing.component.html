@@ -11,14 +11,20 @@
 </header>
 
 <div class="w3-container">
-  <p>Enter your name</p>
+  <!-- <p>Enter your name</p> -->
+  <label for="text">Enter your name</label><br>
   <input type="text" [(ngModel)]="userName"><br>
-  <p>Enter trip Location</p>
+<p></p>
+  <!-- <p>Enter trip Location</p> -->
+  <label for="text">Enter trip Location</label><br>
 <input type="text" [(ngModel)]="locationString2"><br>
-<p>How many hours?</p>
+<p></p>
+<!-- <p>How many hours?</p> -->
+<label for="number">How many hours?</label><br>
 <input type="number" max="72" min="1" [(ngModel)]="tripDuration">
-
-<p>How many people?</p>
+<p></p>
+<!-- <p>How many people?</p> -->
+<label for="number">How many people?</label><br>
 <input type="number" min="1" [(ngModel)]="totalPartySize">
 <p></p>
 <label for="Date">Which day will your hike begin?</label>
@@ -62,9 +68,12 @@
   </select> 
   <p></p>
 </div>
-
-<button *ngIf="tripDuration === 0 || hikeStringStart === '' || locationString2=== '' || totalPartySize === 0"disabled>move on</button>
-<button *ngIf="tripDuration >0 && hikeStringStart !== '' && locationString2!== '' && totalPartySize >0 "(click)="GetTripDurationAndMoveToBagBuilder()">move on</button>
+<pre>
 <br>
+  <button *ngIf="tripDuration === 0 || hikeStringStart === '' || locationString2=== '' || totalPartySize === 0"disabled> Enter Info </button>
+  <button *ngIf="tripDuration >0 && hikeStringStart !== '' && locationString2!== '' && totalPartySize >0 "(click)="GetTripDurationAndMoveToBagBuilder()"> Enter Info </button>
+<br>
+</pre>
 <p></p>
+
 </div>

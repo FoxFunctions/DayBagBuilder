@@ -1,0 +1,1 @@
+{"ast":null,"code":"export class BagSave {\n  constructor(id, userName, itemName, itemweight) {\n    this.id = id;\n    this.userName = userName;\n    this.itemName = itemName;\n    this.itemweight = itemweight;\n  }\n\n}","map":null,"metadata":{},"sourceType":"module"}
